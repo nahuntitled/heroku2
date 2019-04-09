@@ -4,6 +4,10 @@
 
 ## Quick Start
 
+e:
+cd mongo/bin
+mongod --dbpath e:/mongo/data/db
+
 Add your MONGO_URI to the default.json file. Make sure you set an env var for that and the jwtSecret on deployment
 
 ```bash

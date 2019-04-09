@@ -1,4 +1,4 @@
 {
-  "mongoURI": "PUT_YOUR_MONGO_URI",
+  "mongoURI": "mongodb://localhost:27017/tourFirm",
   "jwtSecret": "sl_myJwtSecret"
 }
