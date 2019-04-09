@@ -6,7 +6,7 @@ import { returnErrors } from './errorActions';
 export const getItems = () => dispatch => {
   dispatch(setItemsLoading());
   axios
-    .get('/api/items')
+    .get('/api/hotels')
     .then(res =>
       dispatch({
         type: GET_ITEMS,
@@ -20,7 +20,7 @@ export const getItems = () => dispatch => {
 
 export const addItem = item => (dispatch, getState) => {
   axios
-    .post('/api/items', item, tokenConfig(getState))
+    .post('/api/hotels', item, tokenConfig(getState))
     .then(res =>
       dispatch({
         type: ADD_ITEM,
@@ -34,7 +34,7 @@ export const addItem = item => (dispatch, getState) => {
 
 export const deleteItem = id => (dispatch, getState) => {
   axios
-    .delete(`/api/items/${id}`, tokenConfig(getState))
+    .delete(`/api/hotels/${id}`, tokenConfig(getState))
     .then(res =>
       dispatch({
         type: DELETE_ITEM,
