@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
-const AutoIncrement = require('mongoose-sequence')(mongoose);
+const autoIncrement = require('mongoose-auto-increment');
 const Schema = mongoose.Schema;
 
+autoIncrement.initialize(mongoose.connection);
 // Create Schema
 const CountrySchema = new Schema({
-  id_country: {
+  id: {
     type: Number
   },
   name: {
@@ -17,6 +18,7 @@ const CountrySchema = new Schema({
   }
 });
 
-CountrySchema.plugin(AutoIncrement, {inc_field: 'id_country'});
+
+CountrySchema.plugin(autoIncrement.plugin, { model: 'Country', field: 'id' });
 
 module.exports = Country = mongoose.model('Country', CountrySchema);

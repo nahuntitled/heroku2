@@ -3,7 +3,7 @@ const router = express.Router();
 const auth = require('../../middleware/auth');
 
 // Item Model
-const Hotel = require('../../models/Hotel');
+const Country = require('../../models/Country');
 
 // @route   GET api/items
 // @desc    Get All Items
@@ -13,25 +13,18 @@ router.get('/', (req, res) => {
     'Access-Control-Expose-Headers': 'Content-Range',
     'Content-Range': 'bytes : 0-9/*'
   });
-  Hotel.find()
+  Country.find()
     .sort({ date: -1 })
     .then(items => res.json(items));
 });
-
 
 // @route   POST api/items
 // @desc    Create An Item
 // @access  Private
 router.post('/', (req, res) => {
-  const newItem = new Hotel({
+  const newItem = new Country({
     name: req.body.name,
     price: req.body.price,
-    stars: req.body.stars,
-    food: req.body.food,
-    people: req.body.people,
-    kids: req.body.kids,
-    description: req.body.description,
-    country_id: req.body.country_id
   });
 
   newItem.save().then(item => res.json(item));
@@ -41,9 +34,13 @@ router.post('/', (req, res) => {
 // @desc    Delete A Item
 // @access  Private
 router.delete('/:id', auth, (req, res) => {
-  Hotel.findById(req.params.id)
+  Country.findById(req.params.id)
     .then(item => item.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
+});
+
+router.delete('/', (req, res) => {
+  Country.remove().then(() => res.json({ success: true }))
 });
 
 module.exports = router;
