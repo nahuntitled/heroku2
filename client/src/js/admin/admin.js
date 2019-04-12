@@ -18,71 +18,75 @@ import { HotelsList } from './resources/hotels/list'
 const drawerWidth = 240;
 
 const styles = theme => ({
-  root: {
-    display: 'flex',
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing.unit * 3,
-  },
-  toolbar: theme.mixins.toolbar,
+	root: {
+		display: 'flex',
+	},
+	appBar: {
+		zIndex: theme.zIndex.drawer + 1,
+	},
+	drawer: {
+		width: drawerWidth,
+		flexShrink: 0,
+	},
+	drawerPaper: {
+		width: drawerWidth,
+	},
+	content: {
+		flexGrow: 1,
+		padding: theme.spacing.unit * 3,
+	},
+	toolbar: theme.mixins.toolbar,
 });
 
 function Admin(props) {
-  const { classes } = props;
+	const {classes} = props;
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Clipped drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.toolbar} />
-        <List>
-          <ListItem button>
-            <ListItemIcon><InboxIcon /></ListItemIcon>
-            <ListItemText><Link  to="/admin/countrys">Countrys</Link></ListItemText>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon><InboxIcon /></ListItemIcon>
-            <ListItemText><Link  to="/admin/hotels">Hotels</Link></ListItemText>
-          </ListItem>
-        </List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-          <Switch>
-            <Route path='/admin/countrys' component={CountrysList}/>
-            <Route path='/admin/hotels' component={HotelsList}/>
-          </Switch>
-      </main>
-    </div>
-  );
+	return (
+		<BrowserRouter>
+			<div className={classes.root}>
+
+				<CssBaseline/>
+				<AppBar position="fixed" className={classes.appBar}>
+					<Toolbar>
+						<Typography variant="h6" color="inherit" noWrap>
+							Clipped drawer
+						</Typography>
+					</Toolbar>
+				</AppBar>
+				<Drawer
+					className={classes.drawer}
+					variant="permanent"
+					classes={{
+						paper: classes.drawerPaper,
+					}}
+				>
+					<div className={classes.toolbar}/>
+					<List>
+						<ListItem button>
+							<ListItemIcon><InboxIcon/></ListItemIcon>
+							<ListItemText><Link to="/admin/countrys" refresh={true}>Countrys</Link></ListItemText>
+						</ListItem>
+						<ListItem button>
+							<ListItemIcon><InboxIcon/></ListItemIcon>
+							<ListItemText><Link to="/admin/hotels">Hotels</Link></ListItemText>
+						</ListItem>
+					</List>
+				</Drawer>
+				<main className={classes.content}>
+					<div className={classes.toolbar}/>
+					<Switch>
+						<Route exact path='/admin/countrys' component={CountrysList}/>
+						<Route exact path='/admin/hotels' component={HotelsList}/>
+					</Switch>
+				</main>
+
+			</div>
+		</BrowserRouter>
+	);
 }
 
 Admin.propTypes = {
-  classes: PropTypes.object.isRequired,
+	classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Admin);
