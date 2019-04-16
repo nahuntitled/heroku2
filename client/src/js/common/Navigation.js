@@ -10,7 +10,6 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import LoginModal from './auth/LoginModal';
 import Logout from './auth/Logout';
 import { Link } from "react-router-dom"
 import { Button } from "@material-ui/core"
@@ -49,7 +48,7 @@ class AppNavbar extends Component {
     const guestLinks = (
       <Fragment>
         <NavItem>
-          <LoginModal />
+          <Link to="/login">Login</Link>
         </NavItem>
       </Fragment>
     );

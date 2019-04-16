@@ -19,3 +19,12 @@
   opacity: 0.01;
   transition: opacity 1000ms ease-in;
 }
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.links:hover {
+  text-decoration: none;
+}

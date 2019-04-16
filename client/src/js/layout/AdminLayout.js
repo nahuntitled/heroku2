@@ -1,30 +1,91 @@
 import React from "react"
-import AdminNavigation from "../common/navigation/AdminNavigation"
-import Grid from "@material-ui/core/Grid"
-import { Paper } from "@material-ui/core"
 import { connect } from "react-redux"
 import store from "../../store";
+import { withStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import { Link } from "react-router-dom"
+import { loadUser } from '../actions/authActions'
 
 store.dispatch(loadUser())
+
+const drawerWidth = 240;
+
+const styles = theme => ({
+	root: {
+		display: 'flex',
+	},
+	appBar: {
+		zIndex: 55,
+	},
+	drawer: {
+		width: drawerWidth,
+    flexShrink: 0,
+    zIndex: 44
+	},
+	drawerPaper: {
+		width: drawerWidth,
+	},
+	content: {
+		flexGrow: 1,
+		padding: theme.spacing.unit * 3,
+	},
+	toolbar: theme.mixins.toolbar,
+});
 
 class AdminLayout extends React.Component {
 
   render() {
-    const { children } = this.props
+    const { children, classes } = this.props
 
     return (
-      <div>
-        <AdminNavigation />
-        <main>
-          <Grid container spacing={16}>
-            <Grid item md={2}>
-            </Grid>
-            <Grid item md={10}>
-              <Paper style={{ margin: "20px 20px 20px 0" }}>{children}</Paper>
-            </Grid>
-          </Grid>
-        </main>
-      </div>
+      <div className={classes.root}>
+
+      <CssBaseline/>
+      <AppBar position="fixed" className={classes.appBar}>
+        <Toolbar>
+          <Typography variant="h6" color="inherit" noWrap>
+            Clipped drawer
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        className={classes.drawer}
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <div className={classes.toolbar}/>
+        <List>
+          <Link to="/admin/tours" className="links">
+            <ListItem button>
+              <ListItemIcon><InboxIcon/></ListItemIcon>
+              <ListItemText>Туры</ListItemText>
+            </ListItem>
+          </Link>
+          <Link to="/admin/hotels" className="links">
+            <ListItem button>
+              <ListItemIcon><InboxIcon/></ListItemIcon>
+              <ListItemText>Отели</ListItemText>
+            </ListItem>
+          </Link>
+         </List>
+      </Drawer>
+      <main className={classes.content}>
+        <div className={classes.toolbar}/>
+        {children}
+      </main>
+
+    </div>
     )
   }
 }
@@ -36,4 +97,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(AdminLayout)
+export default connect(mapStateToProps)(withStyles(styles)(AdminLayout))

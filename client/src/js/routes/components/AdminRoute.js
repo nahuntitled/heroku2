@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
-import { Redirect, Route } from "react-router-dom"
+import { Route } from "react-router-dom"
+import AdminLayout from '../../layout/AdminLayout'
 
 // TODO fix error and add && user.isAdmin
 
@@ -13,7 +14,7 @@ const AdminRoute = ({
   <Route
     {...rest}
     render={props =>
-      isAuthenticated ? <Component {...props} /> : <Redirect to="/login" />
+      isAuthenticated ? <AdminLayout><Component {...props} /></AdminLayout> : null
     }
   />
 )

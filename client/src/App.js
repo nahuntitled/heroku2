@@ -3,14 +3,13 @@ import Routes from "./js/routes"
 import { BrowserRouter } from "react-router-dom"
 import { Provider } from "react-redux"
 import store from "./store"
-import { loadUser } from './actions/authActions';
+import { loadUser } from './js/actions/authActions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+store.dispatch(loadUser());
+
 class App extends Component {
-  componentDidMount() {
-    store.dispatch(loadUser());
-  }
 
   render() {
     return(

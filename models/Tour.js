@@ -1,12 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 // Create Schema
-const HotelSchema = new Schema({
-  id: {
-    type: Number
-  },
+const TourSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -39,11 +35,10 @@ const HotelSchema = new Schema({
     type: String,
     required: true
   },
-  country_id: {
-    type: Number
+  countryId: {
+    type: Number,
+    required: true
   }
 });
 
-HotelSchema.plugin(AutoIncrement, {inc_field: 'id'});
-
-module.exports = Hotel = mongoose.model('Hotel', HotelSchema);
+module.exports = Tour = mongoose.model('Tour', TourSchema);

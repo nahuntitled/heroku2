@@ -3,17 +3,13 @@ const router = express.Router();
 const auth = require('../../middleware/auth');
 
 // Item Model
-const Hotel = require('../../models/Hotel');
+const Tour = require('../../models/Tour');
 
 // @route   GET api/items
 // @desc    Get All Items
 // @access  Public
 router.get('/', (req, res) => {
-  res.set({
-    'Access-Control-Expose-Headers': 'Content-Range',
-    'Content-Range': 'bytes : 0-9/*'
-  });
-  Hotel.find()
+  Tour.find()
     .sort({ date: -1 })
     .then(items => res.json(items));
 });
@@ -22,8 +18,8 @@ router.get('/', (req, res) => {
 // @route   POST api/items
 // @desc    Create An Item
 // @access  Private
-router.post('/', (req, res) => {
-  const newItem = new Hotel({
+router.post('/', auth, (req, res) => {
+  const newItem = new Tour({
     name: req.body.name,
     price: req.body.price,
     stars: req.body.stars,
@@ -31,17 +27,35 @@ router.post('/', (req, res) => {
     people: req.body.people,
     kids: req.body.kids,
     description: req.body.description,
-    country_id: req.body.country_id
+    countryId: req.body.countryId,
   });
+  console.log(req.body.countryId);
+  
 
   newItem.save().then(item => res.json(item));
+});
+
+// @route   PUT api/items/:id
+// @desc    Create An Item
+// @access  Private
+router.put('/:id', auth, (req, res) => {
+  Tour.findOneAndReplace({_id: req.params.id},  {
+    name: req.body.name,
+    price: req.body.price,
+    stars: req.body.stars,
+    food: req.body.food,
+    people: req.body.people,
+    kids: req.body.kids,
+    description: req.body.description,
+    countryId: req.body.countryId,
+  }).then(item => res.json(item));
 });
 
 // @route   DELETE api/items/:id
 // @desc    Delete A Item
 // @access  Private
 router.delete('/:id', auth, (req, res) => {
-  Hotel.findById(req.params.id)
+  Tour.findById(req.params.id)
     .then(item => item.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
 });

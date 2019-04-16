@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import {
   Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
   Form,
   FormGroup,
   Label,
   Input,
-  NavLink,
-  Alert
+  Container
 } from 'reactstrap';
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/authActions';
@@ -18,7 +15,7 @@ import { clearErrors } from '../../actions/errorActions';
 
 class LoginModal extends Component {
   state = {
-    modal: false,
+    modal: true,
     email: '',
     password: '',
     msg: null
@@ -79,45 +76,37 @@ class LoginModal extends Component {
   render() {
     return (
       <div>
-        <NavLink onClick={this.toggle} href='#'>
-          Login
-        </NavLink>
+        <Container>
+        <Form onSubmit={this.onSubmit} style={{width:"600px",margin:"0 auto"}}>
+          <FormGroup>
+            <Label for='email'>Email</Label>
+            <Input
+              type='email'
+              name='email'
+              id='email'
+              placeholder='Email'
+              className='mb-3'
+              onChange={this.onChange}
+            />
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Login</ModalHeader>
-          <ModalBody>
-            {this.state.msg ? (
-              <Alert color='danger'>{this.state.msg}</Alert>
-            ) : null}
-            <Form onSubmit={this.onSubmit}>
-              <FormGroup>
-                <Label for='email'>Email</Label>
-                <Input
-                  type='email'
-                  name='email'
-                  id='email'
-                  placeholder='Email'
-                  className='mb-3'
-                  onChange={this.onChange}
-                />
-
-                <Label for='password'>Password</Label>
-                <Input
-                  type='password'
-                  name='password'
-                  id='password'
-                  placeholder='Password'
-                  className='mb-3'
-                  onChange={this.onChange}
-                />
-                <Button color='dark' style={{ marginTop: '2rem' }} block>
-                  Login
-                </Button>
-              </FormGroup>
-            </Form>
-          </ModalBody>
-        </Modal>
-      </div>
+            <Label for='password'>Password</Label>
+            <Input
+              type='password'
+              name='password'
+              id='password'
+              placeholder='Password'
+              className='mb-3'
+              onChange={this.onChange}
+            />
+            <Button color='dark' style={{ marginTop: '2rem' }} block>
+              <Link to="/admin">
+                Login
+              </Link>
+            </Button>
+          </FormGroup>
+        </Form>
+        </Container>
+  </div>
     );
   }
 }

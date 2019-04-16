@@ -7,11 +7,11 @@ import AdminRoute from "./components/AdminRoute"
 const Routes = () => (
   <Switch>
     {routes.map((route, i) => {
-      if (route.auth) {
+      if (route.admin) {
         return <AdminRoute key={i} {...route} />
-      }
-
+      } else {
       return <PublicRoute key={i} {...route} />
+      }
     })}
   </Switch>
 )
