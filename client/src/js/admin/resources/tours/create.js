@@ -40,6 +40,9 @@ class HotelCreate extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     
+    const pic = new FormData();
+    pic.append('file', document.getElementById('file').files[0]);
+
     const newItem = {
       name: this.state.name,
       price: this.state.price,
@@ -49,12 +52,21 @@ class HotelCreate extends React.Component {
       kids: this.state.kids,
       description: this.state.description,
       countryId: this.state.countryId,
+      filePath: ""
     };
 
-    // Add or Edit item action
-    this.props.edit ?
-    this.props.editItem(this.props.tour._id,  newItem):
-    this.props.addItem(newItem)
+    fetch('/api/upload', {
+      method: 'POST',
+      mode: 'cors',
+      body: pic
+    }).then(res => res.json()).then(i => {
+      newItem.filePath = i;
+
+      // Add or Edit item action
+      this.props.edit ?
+      this.props.editItem(this.props.tour._id, newItem):
+      this.props.addItem(newItem)
+    });
 
     store.dispatch(getItems());
 
@@ -100,7 +112,7 @@ class HotelCreate extends React.Component {
     <Modal isOpen={this.state.modal} toggle={this.toggle} style={{zIndex:"100"}}>
         <ModalHeader toggle={this.toggle}>Додати новый тур</ModalHeader>
           <ModalBody>
-          <Form onSubmit={this.onSubmit}>
+          <Form onSubmit={this.onSubmit} encType="multipart/form-data">
           <FormGroup>
             <Label for='email'>Назва</Label>
             <Input
@@ -111,7 +123,14 @@ class HotelCreate extends React.Component {
               className='mb-3'
               onChange={this.onChange}
             />
-
+            <Input
+              type='file'
+              name='file'
+              id='file'
+              className='mb-3'
+              accept="image/x-png"
+              onChange={this.onChange}
+            />
             <Label for='email'>Ціна</Label>
             <Input
               type='text'

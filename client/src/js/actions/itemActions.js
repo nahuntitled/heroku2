@@ -18,7 +18,7 @@ export const getItems = () => dispatch => {
     );
 };
 
-export const addItem = item => (dispatch, getState) => {
+export const addItem = (item) => (dispatch, getState) => {
   axios
     .post('/api/tours', item, tokenConfig(getState))
     .then(res =>

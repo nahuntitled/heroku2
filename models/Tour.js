@@ -38,6 +38,10 @@ const TourSchema = new Schema({
   countryId: {
     type: Number,
     required: true
+  },
+  filePath: {
+    type: String,
+    required: true
   }
 });
 

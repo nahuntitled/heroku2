@@ -10,6 +10,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
+import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -46,6 +47,7 @@ function getSorting(order, orderBy) {
 
 const rows = [
   { id: 'name', numeric: false, disablePadding: true, label: 'Название' },
+  { id: 'filePath', numeric: true, disablePadding: false, label: 'Фото' },
   { id: 'price', numeric: true, disablePadding: false, label: 'Цена' },
   { id: 'stars', numeric: true, disablePadding: false, label: 'Звезды' },
   { id: 'food', numeric: true, disablePadding: false, label: 'Питание' },
@@ -211,6 +213,7 @@ class CountrysList extends React.Component {
                       id={n._id}
                     >
                       <TableCell component="th" scope="row" padding="none">{n.name}</TableCell>
+                      <TableCell align="right"> <Avatar alt="Remy Sharp" src={".." + n.filePath} /></TableCell>
                       <TableCell align="right">{n.price}</TableCell>
                       <TableCell align="right">{n.stars}</TableCell>
                       <TableCell align="right">{n.food}</TableCell>

@@ -19,6 +19,8 @@ router.get('/', (req, res) => {
 // @desc    Create An Item
 // @access  Private
 router.post('/', auth, (req, res) => {
+console.log(req.body);
+
   const newItem = new Tour({
     name: req.body.name,
     price: req.body.price,
@@ -28,9 +30,8 @@ router.post('/', auth, (req, res) => {
     kids: req.body.kids,
     description: req.body.description,
     countryId: req.body.countryId,
+    filePath: req.body.filePath
   });
-  console.log(req.body.countryId);
-  
 
   newItem.save().then(item => res.json(item));
 });
@@ -48,6 +49,7 @@ router.put('/:id', auth, (req, res) => {
     kids: req.body.kids,
     description: req.body.description,
     countryId: req.body.countryId,
+    filePath: req.body.filePath
   }).then(item => res.json(item));
 });
 
