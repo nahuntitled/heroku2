@@ -1,6 +1,6 @@
 import Admin from './admin'
 import ToursList from './resources/tours/list'
-import { HotelsList } from './resources/hotels/list'
+import CountrysList from './resources/countrys/list'
 
 export default [
   {
@@ -16,9 +16,9 @@ export default [
     component: ToursList
   },
   {
-    path: "/admin/hotels",
+    path: "/admin/countrys",
     exact: true,
     admin: true,
-    component: HotelsList
+    component: CountrysList
   }
 ]

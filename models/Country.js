@@ -7,6 +7,10 @@ const CountrySchema = new Schema({
     type: String,
     required: true
   },
+  imgPath: {
+    type: String,
+    required: true
+  },
   description: {
     type: String,
     required: true

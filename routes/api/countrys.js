@@ -3,17 +3,13 @@ const router = express.Router();
 const auth = require('../../middleware/auth');
 
 // Item Model
-const Country = require('../../models/Country');
+const Place = require('../../models/Place');
 
 // @route   GET api/items
 // @desc    Get All Items
 // @access  Public
 router.get('/', (req, res) => {
-  res.set({
-    'Access-Control-Expose-Headers': 'Content-Range',
-    'Content-Range': 'bytes : 0-9/*'
-  });
-  Country.find()
+  Place.find()
     .sort({ date: -1 })
     .then(items => res.json(items));
 });
@@ -21,26 +17,35 @@ router.get('/', (req, res) => {
 // @route   POST api/items
 // @desc    Create An Item
 // @access  Private
-router.post('/', (req, res) => {
-  const newItem = new Country({
+router.post('/', auth, (req, res) => {
+
+  const newItem = new Place({
     name: req.body.name,
-    price: req.body.price,
+    description: req.body.description,
+    imgPath: req.body.imgPath
   });
 
   newItem.save().then(item => res.json(item));
 });
 
+// @route   PUT api/items/:id
+// @desc    Create An Item
+// @access  Private
+router.put('/:id', (req, res) => {
+  Place.findOneAndReplace({_id: req.params.id},  {
+    name: req.body.name,
+    description: req.body.description,
+    imgPath: req.body.imgPath
+  }).then(item => res.json(item));
+});
+
 // @route   DELETE api/items/:id
 // @desc    Delete A Item
 // @access  Private
-router.delete('/:id', auth, (req, res) => {
-  Country.findById(req.params.id)
+router.delete('/:id', (req, res) => {
+  Place.findById(req.params.id)
     .then(item => item.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
-});
-
-router.delete('/', (req, res) => {
-  Country.remove().then(() => res.json({ success: true }))
 });
 
 module.exports = router;

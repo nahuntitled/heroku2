@@ -25,6 +25,11 @@
   justify-content: space-between;
 }
 
+.links {
+  color: white;
+}
+
 .links:hover {
   text-decoration: none;
+  color: rgba(255, 255, 255, 0.87);
 }

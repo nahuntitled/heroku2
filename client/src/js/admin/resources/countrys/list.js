@@ -14,12 +14,12 @@ import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
-import { deleteItem, getItems } from '../../../actions/itemActions';
+import HotelCreate from './create'
+import { getCountrys } from '../../../actions/itemActions';
 import { connect } from 'react-redux';
 import store from '../../../../store'
-import HotelCreate from './create'
 
-store.dispatch(getItems());
+store.dispatch(getCountrys());
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -48,13 +48,7 @@ function getSorting(order, orderBy) {
 const rows = [
   { id: 'name', numeric: false, disablePadding: true, label: 'Название' },
   { id: 'filePath', numeric: true, disablePadding: false, label: 'Фото' },
-  { id: 'price', numeric: true, disablePadding: false, label: 'Цена' },
-  { id: 'stars', numeric: true, disablePadding: false, label: 'Звезды' },
-  { id: 'food', numeric: true, disablePadding: false, label: 'Питание' },
-  { id: 'people', numeric: true, disablePadding: false, label: 'Взрослых' },
-  { id: 'kids', numeric: true, disablePadding: false, label: 'Детей' },
   { id: 'description', numeric: true, disablePadding: false, label: 'Описание' },
-  { id: 'countryId', numeric: true, disablePadding: false, label: 'Страна' },
   { id: 'edit', numeric: true, disablePadding: false, label: 'Изменение' },
   { id: 'delete', numeric: true, disablePadding: false, label: 'Удаление' }
 ];
@@ -117,19 +111,20 @@ const toolbarStyles = theme => ({
   }
 });
 
-let EnhancedTableToolbar = props => {
-  const { classes } = props;
+class EnhancedTableToolbar extends React.Component {
+  render() {
+  const { classes } = this.props;
 
   return (
     <Toolbar>
       <div className={classes.title}>
         <Typography variant="h5" id="tableTitle">
-          Туры
+          Страны
         </Typography>
         <HotelCreate />
       </div>
     </Toolbar>
-  );
+  )}
 };
 
 EnhancedTableToolbar.propTypes = {
@@ -152,11 +147,12 @@ const styles = theme => ({
   },
 });
 
-class HolelsList extends React.Component {
+class CountrysList extends React.Component {
   state = {
     order: 'asc',
     orderBy: 'name',
     selected: [],
+    data: [],
     page: 0,
     rowsPerPage: 5,
   };
@@ -182,18 +178,20 @@ class HolelsList extends React.Component {
 
   deleteItem = e => {
     var id = e.target.parentElement.parentElement.parentElement.id;
-    this.props.deleteItem(id);
+    fetch('/api/countrys/' + id , {
+      method: 'DELETE',
+    }).then(res => res.json).then(suc => { console.log(suc); store.dispatch(getCountrys()) })
   }
 
   render() {
     const { classes } = this.props;
-    const data = this.props.item.items;
+    const data = this.props.item.countrys;
     const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
-        <EnhancedTableToolbar numSelected={selected.length}/>
+        <EnhancedTableToolbar numSelected={selected.length} />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
@@ -213,15 +211,9 @@ class HolelsList extends React.Component {
                       id={n._id}
                     >
                       <TableCell component="th" scope="row" padding="none">{n.name}</TableCell>
-                      <TableCell align="right"> <Avatar alt="Remy Sharp" src={".." + n.filePath} /></TableCell>
-                      <TableCell align="right">{n.price}</TableCell>
-                      <TableCell align="right">{n.stars}</TableCell>
-                      <TableCell align="right">{n.food}</TableCell>
-                      <TableCell align="right">{n.people}</TableCell>
-                      <TableCell align="right">{n.kids}</TableCell>
+                      <TableCell align="left"> <Avatar alt="Remy Sharp" src={".." + n.imgPath} /></TableCell>
                       <TableCell align="right">{n.description}</TableCell>
-                      <TableCell align="right">{n.countryId}</TableCell>
-                      <TableCell align="right"><HotelCreate edit={true} tour={n} /></TableCell>
+                      <TableCell align="right"><HotelCreate edit={true} tour={n} updateData={this.updateData} /></TableCell>
                       <TableCell align="right"><Button color="secondary" onClick={this.deleteItem}>Удалить</Button></TableCell>
                     </TableRow>
                   );
@@ -254,9 +246,9 @@ class HolelsList extends React.Component {
   }
 }
 
-HolelsList.propTypes = {
+CountrysList.propTypes = {
   classes: PropTypes.object.isRequired,
-  getItems: PropTypes.func.isRequired,
+  getCountrys: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool
 };
@@ -268,5 +260,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { deleteItem, getItems }
-)(withStyles(styles)(HolelsList));
+  { getCountrys }
+)(withStyles(styles)(CountrysList));

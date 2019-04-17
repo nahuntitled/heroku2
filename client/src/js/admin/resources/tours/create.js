@@ -68,7 +68,9 @@ class HotelCreate extends React.Component {
       this.props.addItem(newItem)
     });
 
-    store.dispatch(getItems());
+    setTimeout(() => {
+      store.dispatch(getItems());
+    }, 200);
 
     // Close modal
     this.toggle();
@@ -128,7 +130,7 @@ class HotelCreate extends React.Component {
               name='file'
               id='file'
               className='mb-3'
-              accept="image/x-png"
+              accept="image/*"
               onChange={this.onChange}
             />
             <Label for='email'>Ціна</Label>

@@ -26,7 +26,7 @@ router.post('/', upload.single("file"), (req, res) => {
   const tempPath = req.file.path;
   const targetPath = path.join(__dirname, "../../client/public/uploads/" + req.file.originalname);
 
-    if (path.extname(req.file.originalname).toLowerCase() === ".png") {
+    if (path.extname(req.file.originalname).toLowerCase() !== "fffkdnfjkd") {
       fs.rename(tempPath, targetPath, err => {
         if (err) return handleError(err, res);
 

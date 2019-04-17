@@ -52,9 +52,11 @@ class AdminLayout extends React.Component {
       <CssBaseline/>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Clipped drawer
-          </Typography>
+          <Link to="/" className="links">
+            <Typography variant="h6" color="inherit" noWrap>
+              "Не позіхай, валізи збирай!"
+            </Typography>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -66,16 +68,22 @@ class AdminLayout extends React.Component {
       >
         <div className={classes.toolbar}/>
         <List>
+        <Link to="/admin" className="links">
+            <ListItem button>
+              <ListItemIcon><InboxIcon/></ListItemIcon>
+              <ListItemText>Настройки</ListItemText>
+            </ListItem>
+          </Link>
           <Link to="/admin/tours" className="links">
             <ListItem button>
               <ListItemIcon><InboxIcon/></ListItemIcon>
               <ListItemText>Туры</ListItemText>
             </ListItem>
           </Link>
-          <Link to="/admin/hotels" className="links">
+          <Link to="/admin/countrys" className="links">
             <ListItem button>
               <ListItemIcon><InboxIcon/></ListItemIcon>
-              <ListItemText>Отели</ListItemText>
+              <ListItemText>Страны</ListItemText>
             </ListItem>
           </Link>
          </List>

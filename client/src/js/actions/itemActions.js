@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, EDIT_ITEM } from './types';
+import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, EDIT_ITEM, GET_COUNTRYS, ADD_COUNTRY } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 
@@ -18,12 +18,41 @@ export const getItems = () => dispatch => {
     );
 };
 
+export const getCountrys = () => dispatch => {
+  dispatch(setItemsLoading());
+  axios
+    .get('/api/countrys')
+    .then(res =>
+      dispatch({
+        type: GET_COUNTRYS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
 export const addItem = (item) => (dispatch, getState) => {
   axios
     .post('/api/tours', item, tokenConfig(getState))
     .then(res =>
       dispatch({
         type: ADD_ITEM,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const addCountry = (item) => (dispatch, getState) => {
+  axios
+    .post('/api/countrys', item, tokenConfig(getState))
+    .then(res =>
+      dispatch({
+        type: ADD_COUNTRY,
         payload: res.data
       })
     )

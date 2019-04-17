@@ -19,8 +19,6 @@ router.get('/', (req, res) => {
 // @desc    Create An Item
 // @access  Private
 router.post('/', auth, (req, res) => {
-console.log(req.body);
-
   const newItem = new Tour({
     name: req.body.name,
     price: req.body.price,

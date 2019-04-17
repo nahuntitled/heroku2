@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
-const TourTypeSchems = new Schema({
+const PlaceSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -10,7 +10,11 @@ const TourTypeSchems = new Schema({
   description: {
     type: String,
     required: true
+  },
+  imgPath: {
+    type: String,
+    required: true
   }
 });
 
-module.exports = TourType = mongoose.model('Country', TourTypeSchems);
+module.exports = Place = mongoose.model('Place', PlaceSchema);
