@@ -1,29 +1,54 @@
 import React from "react"
 import Navigation from "../common/Navigation"
 import { connect } from "react-redux"
-import store from "../../store";
-import { loadUser } from '../actions/authActions';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-store.dispatch(loadUser())
+const styles = () => ({
+  progress: {
+    position: "fixed",
+    top: "calc(50vh - 20px)",
+    left: "calc(50vw - 20px)"
+  },
+});
 
 class SiteLayout extends React.Component {
-  render() {
-    const { children } = this.props
+  state = {
+    render: false
+  }
 
-    return (
-      <div>
-        <Navigation />
-        <main>{children}</main>
-      </div>
-    )
+  componentWillReceiveProps() {
+    if(this.props.item.countrys && this.props.item.config) this.setState({ render: true })
+  }
+
+  render() {
+    const { children, classes } = this.props
+    if(this.state.render) {
+      return (
+        <div>
+          <Navigation />
+          <main>{children}</main>
+        </div>
+      )
+    } else {
+      return (
+        <CircularProgress className={classes.progress} />
+      )
+    }
   }
 }
+
+SiteLayout.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
-    user: state.user
+    user: state.user,
+    item: state.item
   }
 }
 
-export default connect(mapStateToProps)(SiteLayout)
+export default connect(mapStateToProps)(withStyles(styles)(SiteLayout))

@@ -9,7 +9,7 @@ import {
   ModalHeader,
   ModalBody
 } from 'reactstrap';
-import { addItem , editItem, getItems } from '../../../actions/itemActions';
+import { addItem , editItem, getItems, getCountrys } from '../../../actions/itemActions';
 import { connect } from 'react-redux';
 import store from '../../../../store'
 
@@ -19,12 +19,12 @@ class HotelCreate extends React.Component {
     name: '',
     price: '',
     stars: '',
-    food: '',
+    food: 'Все включено',
     people: '',
     kids: '',
     description: '',
-    countryId: '',
-    times: 0
+    country: 'Египет',
+    type: 'Отдых на море'
   };
 
   toggle = () => {
@@ -51,7 +51,8 @@ class HotelCreate extends React.Component {
       people: this.state.people,
       kids: this.state.kids,
       description: this.state.description,
-      countryId: this.state.countryId,
+      country: this.state.country,
+      type: this.state.type,
       filePath: ""
     };
 
@@ -85,7 +86,8 @@ class HotelCreate extends React.Component {
       document.getElementById('people').value = this.props.tour.people;
       document.getElementById('kids').value = this.props.tour.kids;
       document.getElementById('description').value = this.props.tour.description;
-      document.getElementById('countryId').value = this.props.tour.countryId;
+      document.getElementById('country').value = this.props.tour.country;
+      document.getElementById('type').value = this.props.tour.type;
 
       this.setState({
         name: this.props.tour.name,
@@ -95,7 +97,8 @@ class HotelCreate extends React.Component {
         people: this.props.tour.people,
         kids: this.props.tour.kids,
         description: this.props.tour.description,
-        countryId: this.props.tour.countryId,
+        country: this.props.tour.country,
+        type: this.props.tour.type,
       })
     }
   }
@@ -151,15 +154,15 @@ class HotelCreate extends React.Component {
               className='mb-3'
               onChange={this.onChange}
             />
-            <Label for='email'>Харчування</Label>
-            <Input
-              type='text'
-              name='food'
-              id='food'
-              placeholder='food'
-              className='mb-3'
-              onChange={this.onChange}
-            />
+            <FormGroup>
+              <Label for="type">Харчування</Label>
+              <Input type="select" name="food" id="food" onChange={this.onChange} defaultValue="Все включено">
+                <option value="Все включено">Все включено</option>
+                <option value="Завтрак" >Завтрак</option>
+                <option value="2 приема" >2 приема</option>
+                <option value="Не включено" >Не включено</option>
+              </Input>
+            </FormGroup>
             <Label for='email'>Дорослих</Label>
             <Input
               type='text'
@@ -187,15 +190,27 @@ class HotelCreate extends React.Component {
               className='mb-3'
               onChange={this.onChange}
             />
-             <Label for='email'>Країна</Label>
-            <Input
-              type='text'
-              name='countryId'
-              id='countryId'
-              placeholder='countryId'
-              className='mb-3'
-              onChange={this.onChange}
-            />
+            <FormGroup>
+              <Label for="type">Select</Label>
+              <Input type="select" name="type" id="type" onChange={this.onChange} defaultValue="Отдых на море">
+                <option value="Отдых на море">Отдых на море</option>
+                <option value="Выходные туры" >Выходные туры</option>
+                <option value="Лечебные туры" >Лечебные туры</option>
+                <option value="Экскурсии" >Экскурсии</option>
+                <option value="Активный отдых" >Активный отдых</option>
+                <option value="Круизы" >Круизы</option>
+                <option value="Сафари" >Сафари</option>
+                <option value="Горные курорты" >Горные курорты</option>
+              </Input>
+            </FormGroup>
+            <FormGroup>
+              <Label for="country">Select</Label>
+              <Input type="select" name="country" id="country" onChange={this.onChange} defaultValue="Египет">
+                {this.props.item.countrys ? this.props.item.countrys.map(co => {
+                  return <option value={ co.name } key={ co._id } >{ co.name }</option>
+                }) : null}
+              </Input>
+            </FormGroup>
             <Button color='dark' style={{ marginTop: '2rem' }} block>
               Додати
             </Button>
@@ -215,5 +230,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addItem , editItem , getItems }
+  { addItem , editItem , getItems, getCountrys }
 )(HotelCreate);

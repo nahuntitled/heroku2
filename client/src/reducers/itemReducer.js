@@ -5,17 +5,25 @@ import {
   ITEMS_LOADING,
   EDIT_ITEM,
   GET_COUNTRYS,
-  ADD_COUNTRY
+  ADD_COUNTRY,
+  GET_CONFIG
 } from '../js/actions/types';
 
 const initialState = {
   items: [],
   countrys: [],
+  config: [],
   loading: false
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case GET_CONFIG:
+      return {
+        ...state,
+        config: action.payload,
+        loading: false
+      };
     case GET_ITEMS:
       return {
         ...state,

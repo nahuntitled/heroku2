@@ -4,10 +4,12 @@ import { BrowserRouter } from "react-router-dom"
 import { Provider } from "react-redux"
 import store from "./store"
 import { loadUser } from './js/actions/authActions';
+import { getConfig } from './js/actions/itemActions'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 store.dispatch(loadUser());
+store.dispatch(getConfig());
 
 class App extends Component {
 

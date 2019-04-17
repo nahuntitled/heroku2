@@ -15,3 +15,4 @@ export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const GET_COUNTRYS = 'GET_COUNTRYS';
 export const ADD_COUNTRY = 'ADD_COUNTRY';
+export const GET_CONFIG = 'GET_CONFIG';

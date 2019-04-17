@@ -1,6 +1,5 @@
 import React from "react"
 import { connect } from "react-redux"
-import store from "../../store";
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -13,9 +12,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import { Link } from "react-router-dom"
-import { loadUser } from '../actions/authActions'
-
-store.dispatch(loadUser())
 
 const drawerWidth = 240;
 

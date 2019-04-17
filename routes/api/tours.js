@@ -27,7 +27,8 @@ router.post('/', auth, (req, res) => {
     people: req.body.people,
     kids: req.body.kids,
     description: req.body.description,
-    countryId: req.body.countryId,
+    country: req.body.country,
+    type: req.body.type,
     filePath: req.body.filePath
   });
 
@@ -46,7 +47,8 @@ router.put('/:id', auth, (req, res) => {
     people: req.body.people,
     kids: req.body.kids,
     description: req.body.description,
-    countryId: req.body.countryId,
+    country: req.body.country,
+    type: req.body.type,
     filePath: req.body.filePath
   }).then(item => res.json(item));
 });

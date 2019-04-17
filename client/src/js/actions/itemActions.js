@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, EDIT_ITEM, GET_COUNTRYS, ADD_COUNTRY } from './types';
+import { GET_CONFIG, GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, EDIT_ITEM, GET_COUNTRYS, ADD_COUNTRY } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 
@@ -10,6 +10,21 @@ export const getItems = () => dispatch => {
     .then(res =>
       dispatch({
         type: GET_ITEMS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getConfig = () => dispatch => {
+  dispatch(setItemsLoading());
+  axios
+    .get('/api/admin')
+    .then(res =>
+      dispatch({
+        type: GET_CONFIG,
         payload: res.data
       })
     )

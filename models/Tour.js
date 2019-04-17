@@ -18,7 +18,7 @@ const TourSchema = new Schema({
     required: true
   },
   food: {
-    type: Number,
+    type: String,
     default: 1
   },
   people: {
@@ -35,8 +35,12 @@ const TourSchema = new Schema({
     type: String,
     required: true
   },
-  countryId: {
-    type: Number,
+  type: {
+    type: String,
+    required: true
+  },
+  country: {
+    type: String,
     required: true
   },
   filePath: {

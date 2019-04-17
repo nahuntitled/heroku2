@@ -119,21 +119,3 @@ export const tokenConfig = getState => {
 
   return config;
 };
-
-export const authCheck = getState => {
-  const isAuthenticated = !!getState().auth.token;
-  const token = getState().auth.token;
-
-  // Headers
-  const config = {
-    headers: {
-      'Content-type': 'application/json'
-    }
-  };
-
-  if (isAuthenticated) {
-    config.headers['x-auth-token'] = token;
-  }
-
-  return isAuthenticated
-}

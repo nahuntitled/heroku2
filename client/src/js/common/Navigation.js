@@ -6,21 +6,16 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
+  NavLink,
   Container
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Logout from './auth/Logout';
-import { Link } from "react-router-dom"
-import { Button } from "@material-ui/core"
 
-class AppNavbar extends Component {
+class Navigation extends Component {
   state = {
-    isOpen: false
-  };
-
-  static propTypes = {
-    auth: PropTypes.object.isRequired
+    isOpen: false,
+    config: ''
   };
 
   toggle = () => {
@@ -32,36 +27,41 @@ class AppNavbar extends Component {
   render() {
     const { isAuthenticated } = this.props.auth;
 
-    const authLinks = (
+    const guestLinks = (
       <Fragment>
-        <NavItem>
-        <Button color="inherit" to="/admin" component={Link}>
-          Admin
-        </Button>
-        </NavItem>
-        <NavItem>
-          <Logout />
+        <NavItem className="ml-auto">
+          <NavLink href="/admin">
+            Админка
+          </NavLink>
         </NavItem>
       </Fragment>
     );
 
-    const guestLinks = (
-      <Fragment>
-        <NavItem>
-          <Link to="/login">Login</Link>
-        </NavItem>
-      </Fragment>
-    );
+    const navStyle = {
+      background: "rgba(255,255,255,0.9)"
+    };
 
     return (
       <div>
-        <Navbar color='dark' dark expand='sm' className='mb-5'>
+        <Navbar style={navStyle} className="fixed-top" light expand='sm'>
           <Container>
-            <NavbarBrand href='/'>ShoppingList</NavbarBrand>
+            <NavbarBrand href='/'><img src={ ".." + this.props.item.config.logo } height="40" width="70" alt="fdf"/></NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className='ml-auto' navbar>
-                {isAuthenticated ? authLinks : guestLinks}
+            <Nav navbar>
+              <NavItem>
+                <NavLink href="/">Главная</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/tours">Туры</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/about">О нас</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/contact">Контакты</NavLink>
+              </NavItem>
+                {isAuthenticated ? guestLinks : null}
               </Nav>
             </Collapse>
           </Container>
@@ -71,10 +71,17 @@ class AppNavbar extends Component {
   }
 }
 
+Navigation.propTypes = {
+  item: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => ({
+  item: state.item,
   auth: state.auth
 });
 
 export default connect(
-  mapStateToProps
-)(AppNavbar);
+  mapStateToProps,
+  null
+)(Navigation);
