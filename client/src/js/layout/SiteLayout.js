@@ -18,8 +18,10 @@ class SiteLayout extends React.Component {
     render: false
   }
 
-  componentWillReceiveProps() {
-    if(this.props.item.countrys && this.props.item.config) this.setState({ render: true })
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ render: true })
+    }, 1000);
   }
 
   render() {

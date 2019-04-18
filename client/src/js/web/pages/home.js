@@ -4,14 +4,28 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import BestCard from '../../common/cards/BestCard'
+import TypeSlider from '../../common/sliders/TypeSlider'
 
 class Home extends Component {
+  state = {
+    tours: [],
+    countrys: []
+  }
+
+  componentWillMount() {
+    fetch('/api/home/tours').then(res => res.json()).then(tours => this.setState({ tours }))
+    fetch('/api/home/countrys').then(res => res.json()).then(countrys => this.setState({ countrys }))
+  }
+  
+
   render() {
+    const item = this.props.item;
     return (
       <div>
-        <div className="header" style={{ backgroundImage: `url('..${this.props.item.config.header_img}')` }}>
+        <div className="header" style={{ backgroundImage: `url('..${item.config.header_img}')` }}>
           <Container>
-            <h1 className="header__head">{this.props.item.config.header_title}</h1>
+            <h1 className="header__head">{item.config.header_title}</h1>
             <p className="header__subtitle">Так відпочивали Боги. Відпочинок, який ви запам'ятаєте надовго. Бронюйте Online.</p>
 		      	<button className="header__button">Переглянути наші тури</button>
             <div className="header__search">
@@ -20,13 +34,13 @@ class Home extends Component {
                 <div>
                   <p className="input__desc">Країна</p>
                   <select className="header__input" id="country" defaultValue="Египет">
-                    {this.props.item.countrys ? this.props.item.countrys.map(co => {
+                    {item.countrys ? item.countrys.map(co => {
                       return <option className="blacksel" value={ co.name } key={ co._id } >{ co.name }</option>
                     }) : null}
                   </select>
                 </div>
                 <div>
-                  <p className="input__desc">Країна</p>
+                  <p className="input__desc">Тип тура</p>
                   <select className="header__input" id="country" defaultValue="Любой">
                     <option value="Любой">Любой</option>
                     <option value="Отдых на море">Отдых на море</option>
@@ -73,7 +87,24 @@ class Home extends Component {
             </div>
           </Container>
         </div>
-        fsdjfnsdkfjb
+        <section className="best__tours">
+          <div className="container">
+            <h2 className="title">Найкращі пропозиції</h2>
+            <p className="subtitle">Популярні напрямки які користуются пропозицією.</p>
+            <div className="grid">
+              { this.state.tours ? this.state.tours.map((item,i) => {
+                return <BestCard item={item} key={i} />
+              }) : null }
+            </div>
+          </div>
+        </section>
+        <section className="types">
+          <div className="container">
+            <h2 className="title">Види турів</h2>
+            <p className="subtitle">Ми пропонуємо тури на любий смак та бютжет</p>
+            <TypeSlider />
+          </div>
+        </section>
       </div>
     );
   }
