@@ -10,7 +10,6 @@ const Place = require('../../models/Place');
 // @access  Public
 router.get('/', (req, res) => {
   Place.find()
-    .sort({ date: -1 })
     .then(items => res.json(items));
 });
 

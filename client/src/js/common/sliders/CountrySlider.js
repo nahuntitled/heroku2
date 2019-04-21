@@ -1,11 +1,11 @@
 import React from 'react'
 import AliceCarousel from 'react-alice-carousel'
-import TypesCard from '../cards/TypesCard'
+import CountryCard from '../cards/CountryCard'
 import "react-alice-carousel/lib/alice-carousel.css";
 import Left from '@material-ui/icons/KeyboardArrowLeft';
 import Right from '@material-ui/icons/KeyboardArrowRight';
 
-class TypeSlider extends React.Component {
+class CountrySlider extends React.Component {
   responsive = {
     0: { items: 1 },
     600: { items: 1 },
@@ -13,20 +13,16 @@ class TypeSlider extends React.Component {
     1024: { items: 3 }
   }
 
-  Items() {
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
-      <TypesCard key={i} />
-    ))
-  }
-
   render() {
-    if(this.Items()) {
-    const items = this.Items()
+    if(this.props.countrys) {
+    const items = this.props.countrys.map((item,i) => {
+      return <CountryCard item={item} key={i} />
+    })
 
       return (
         <div className="slider">
-          <button className="leftLst" onClick={() => this.Carousel._slidePrev()} > <Left /> </button>
-          <button className="rightLst" onClick={() => this.Carousel._slideNext()} > <Right /> </button>
+          <button className="leftLst wb" onClick={() => this.Carousel._slidePrev()} > <Left /> </button>
+          <button className="rightLst wb" onClick={() => this.Carousel._slideNext()} > <Right /> </button>
             <AliceCarousel
               items={items}
               duration={400}
@@ -53,4 +49,4 @@ class TypeSlider extends React.Component {
   }
 }
 
-export default TypeSlider
+export default CountrySlider

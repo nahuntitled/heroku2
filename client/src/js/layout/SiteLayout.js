@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Footer from '../common/Footer'
 
 const styles = () => ({
   progress: {
@@ -21,7 +22,7 @@ class SiteLayout extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.setState({ render: true })
-    }, 1000);
+    }, 2000);
   }
 
   render() {
@@ -31,6 +32,7 @@ class SiteLayout extends React.Component {
         <div>
           <Navigation />
           <main>{children}</main>
+          <Footer />
         </div>
       )
     } else {

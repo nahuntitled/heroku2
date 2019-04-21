@@ -1,3 +1,10 @@
+body {
+	position: relative;
+	padding-bottom: 300px;
+	min-height: 100vh;
+	height: 100%;
+}
+
 .flex {
   display: flex;
   justify-content: space-between;
@@ -7,8 +14,24 @@
   color: white;
 }
 
+main {
+	margin-top: 66px;
+}
+
+button:focus {
+	outline: none;
+}
+
 .white {
 	color: white !important;
+}
+
+.search__tour {
+	color: black !important;
+	text-transform: uppercase;
+	margin-bottom: 20px;
+	letter-spacing: 2px;
+	font-weight: bold;
 }
 
 .links:hover {
@@ -18,6 +41,7 @@
 
 .header {
 	height: 100vh;
+	margin-top: -66px;
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
 	background-size: cover;
@@ -54,6 +78,12 @@
 	border-radius: 9em;
 }
 
+.header__button:hover {
+	padding: 15px 30px;
+	color: white;
+	text-decoration: none;
+}
+
 .search__header {
 	display: flex;
 	justify-content: space-between;
@@ -88,12 +118,12 @@
 	color: rgba(255,255,255,0.9);
 }
 
-.header__input::placeholder {
-	color: rgba(255,255,255,0.6);
+.header__input > option {
+	color: rgba(0,0,0,0.7);
 }
 
-.blacksel {
-	color: rgba(0,0,0,0.7);
+.header__input::placeholder {
+	color: rgba(255,255,255,0.6);
 }
 
 section {
@@ -136,6 +166,7 @@ section {
 	padding: 80px 0 0;
   background: rgba(0,0,0,0.2);
 	height: 100%;
+	border-radius: 7px;
 }
 
 .grid__light {
@@ -206,7 +237,6 @@ section {
 	padding: 10px 25px;
 	color: white;
 	text-transform: uppercase;
-	text-decoration: none;
 	font-weight: bold;
 	border: none;
   font-size: 12px;
@@ -223,6 +253,7 @@ section {
 	padding: 11px 26px;
 	margin-top: 13px;
 	transition: .5s;
+	text-decoration: none;
 }
 
 .slider {
@@ -264,8 +295,347 @@ section {
 	color: white;
 	line-height: 0px;
 	font-size: 20px;
+	padding: 0;
+}
+
+.leftLst > svg, .rightLst > svg {
+	font-size: 37px;
+}
+
+.rightLst > svg {
+	margin-right: -4px;
 }
 
 .leftLst:focus, .rightLst:focus {
 	outline: none;
+}
+
+.wb {
+	border: 5px solid white !important;
+}
+
+.pad22 {
+	color: white;
+	margin:10px;
+	background:#f1f1f1;
+	height: 400px;
+	background-size: cover;
+	border-radius: 6px;
+}
+
+.darken > p {
+	font-size: 22px;
+	line-height: 30px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+}
+
+.rating {
+	color: #ffde00;
+	margin-left: -5px;
+	margin-bottom: 10px;
+}
+
+.rating > svg {
+	margin: 0 2px;
+	font-size: 20px;
+}
+
+.country__info {
+	margin-top: 120px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.country__info > h6 {
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	line-height: 24px;
+	border-right: 1px solid white;
+	padding-right: 15px;
+}
+
+.country__info > h6:last-child {
+	padding-right: 0;
+	border-right: none;
+}
+
+.country__info > h6 > span {
+	font-size: 20px;
+	padding-right: 10px;
+}
+
+.country__desc {
+	padding-bottom: 25px;
+	margin-top: 8px;
+	font-size: 14px;
+	line-height: 22px;
+}
+
+.darken {
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.3);
+	padding: 30px 20px 20px 30px;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 30px 0;
+	background: #060c17;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+.footer__nav {
+  list-style: none;
+}
+
+.footer__nav i {
+  color: #ff6600;
+  margin-right: 10px;
+}
+
+.footer__nav > li {
+  margin: 20px 0;
+}
+
+.footer__nav h6 {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer__nav a:hover {
+  color: #ff6600;
+  transition: 1s;
+}
+
+.footer__nav a {
+  color: #bebebe;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.footer__social {
+  display: flex;
+  margin-top: 40px;
+}
+
+.footer__social a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  transition: .5s;
+}
+
+.footer__social a:hover {
+  color: #ff6600;
+  transition: .5s;
+}
+
+/* Tours page */
+
+.gray__bg {
+	background: #f8f8f8;
+	padding: 15px 30px;
+	color: #bebebe;
+}
+
+.tour__search {
+	background: white;
+	padding: 20px 20px;
+}
+
+.tour__search input, .tour__search select {
+	color: #bebebe;
+	border-radius: 50px;
+	padding-right: 10px;
+}
+
+.tour__search input::placeholder {
+	color: #bebebe;
+}
+
+.tour__img {
+	padding: 0;
+}
+
+.tour__item {
+	margin: 30px 0 20px 20px;
+	background: white;
+	min-height: 200px;
+	padding: 0;
+}
+
+.tour__info {
+	padding: 27px 0 0 35px;
+}
+
+.tour__info .grid__button {
+	margin-bottom: 20px;
+}
+
+.tour__info .grid__button:hover {
+	color: #ff6600;
+}
+
+.tour__date {
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: 400;
+	margin-bottom: 0;
+	text-transform: uppercase;
+}
+
+.tour__name {
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	color: #000;
+	margin: 10px 0;
+}
+
+.tour__deck {
+	font-size: 12px;
+}
+
+.tour__search label {
+	color: black;
+	margin-left: 15px;
+}
+
+.tour__search input[type="submit"] {
+	background: #ff6600;
+	padding: 10px 25px;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+	border: none;
+  font-size: 12px;
+	border-radius: 9em;
+	margin-top: 15px;
+  transition: .5s;
+  height: 44px;
+  border: 2px solid #ff6600;
+}
+
+.tour__right {
+	text-align: center;
+	min-width: 150px;
+}
+
+.tour__price {
+	color: #ff6600;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 28px;
+	margin-bottom: 0;
+}
+
+.tour__from {
+	letter-spacing: 2px;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+/* Страница тура */
+.background_tour {
+	background-size: cover;
+	background-repeat: no-repeat;
+	text-align: center;
+	height: 230px;
+	padding-top: 100px;
+	font-size: 38px;
+	line-height: 40px;
+	letter-spacing: 7.5px;
+	margin-bottom: 20px;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+	margin-bottom: 50px;
+}
+
+.tourpage__main {
+	margin-bottom: 50px;
+}
+
+.tourpage__p {
+	font-size: 13px;
+	line-height: 15px;
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	margin-bottom: 20px;
+	color: #bfbfbf;
+}
+
+.tourpage__p span {
+	margin-left: 10px;
+}
+
+.tourpage__details {
+	background: #ff6600;
+	padding: 28px 34px 31px 34px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	margin-left: 20px;
+}
+
+.tourpage__search {
+	color: white;
+	font-size: 22px;
+	line-height: 25px;
+	font-weight: 700;
+	margin-bottom: 22px;
+	text-transform: uppercase;
+}
+
+.tourpage__info {
+	margin-bottom: 40px;
+}
+
+.tourpage__info .rating > svg {
+	font-size: 16px;
+	margin: 0 4px;
+}
+
+.tourpage__header {
+	letter-spacing: 2.5px;
+	font-weight: bold;
+}
+
+.tourpage__top img {
+	border-radius: 4px;
+}
+
+.tourpage__price {
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	float: right;
+	margin-top: 20px;
+}
+
+.header_tit {
+	font-size: 16px;
+	line-height: 22px;
+	font-weight: 400;
+	margin-bottom: 11px;
+	color: #bebebe;
+}
+
+.tourpage__price strong {
+	font-size: 28px;
+	margin: 0px 5px;
 }

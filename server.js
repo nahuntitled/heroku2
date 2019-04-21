@@ -29,6 +29,7 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/countrys', require('./routes/api/countrys'));
 app.use('/api/upload', require('./routes/api/upload'));
 app.use('/api/admin', require('./routes/api/admin'));
+app.use('/api/home', require('./routes/api/home'));
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

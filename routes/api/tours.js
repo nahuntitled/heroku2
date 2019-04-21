@@ -10,8 +10,36 @@ const Tour = require('../../models/Tour');
 // @access  Public
 router.get('/', (req, res) => {
   Tour.find()
-    .sort({ date: -1 })
     .then(items => res.json(items));
+});
+
+router.get('/:id', (req, res) => {
+  Tour.findById(req.params.id)
+    .then(items => res.json(items));
+});
+
+
+// @route   POST api/items/sort
+// @desc    Sort tpurs
+router.post('/sort', (req, res) => {
+  console.log(req.body);
+  const findRule = {
+    country: {$exists: true},
+    type: {$exists: true},
+    people: 1,
+    kids: 1
+  };
+
+  for(n in req.body) {
+    if(req.body[n] !== '') {
+      findRule[n] = req.body[n]
+    }
+  }
+
+  Tour.find({ country: findRule.country, type: findRule.type, kids: { $gte: findRule.kids }, people: { $gte: findRule.people } })
+  .then(items => {
+    res.json(items)
+  })
 });
 
 
@@ -35,6 +63,7 @@ router.post('/', auth, (req, res) => {
   newItem.save().then(item => res.json(item));
 });
 
+
 // @route   PUT api/items/:id
 // @desc    Create An Item
 // @access  Private
@@ -52,6 +81,7 @@ router.put('/:id', auth, (req, res) => {
     filePath: req.body.filePath
   }).then(item => res.json(item));
 });
+
 
 // @route   DELETE api/items/:id
 // @desc    Delete A Item
