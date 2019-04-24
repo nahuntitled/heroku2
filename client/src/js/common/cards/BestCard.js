@@ -11,8 +11,8 @@ function BestCard(props) {
         <p className="grid__price"><span className="grid__light">Від</span>{ item.price }грн</p>
         <div className="grid__bottom"> 
         <div className="grid__info">
-          <p><SupervisorAccount className="white mr-2 mtop" /><span className="white">{ item.people }</span>Дорослих<span className="white">{ item.kids }</span>Дитина</p>
-          <p><DateRange className="white mr-2 mtop" /><span className="white">10</span>Днів</p>
+          <p><SupervisorAccount className="white mr-2 mtop" />Дорослих:<span className="white">{ item.people }</span>Дітей:<span className="white">{ item.kids }</span></p>
+          <p><DateRange className="white mr-2 mtop" /><span className="white">{ item.days }</span>Днів</p>
         </div>
           <a className="grid__button" href={`/tours/${item._id}`} >Більше</a>
         </div>

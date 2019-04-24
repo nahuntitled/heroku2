@@ -10,16 +10,14 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
-import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
-import { deleteItem, getItems } from '../../../actions/itemActions';
+import { getClient } from '../../../actions/itemActions';
 import { connect } from 'react-redux';
 import store from '../../../../store'
-import HotelCreate from './create'
 
-store.dispatch(getItems());
+store.dispatch(getClient());
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -46,21 +44,15 @@ function getSorting(order, orderBy) {
 }
 
 const rows = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Название' },
-  { id: 'filePath', numeric: false, disablePadding: false, label: 'Фото' },
-  { id: 'type', numeric: true, disablePadding: false, label: 'Тип' },
-  { id: 'country', numeric: true, disablePadding: false, label: 'Страна' },
-  { id: 'hotel', numeric: true, disablePadding: false, label: 'Отель' },
-  { id: 'price', numeric: true, disablePadding: false, label: 'Цена' },
-  { id: 'stars', numeric: true, disablePadding: false, label: 'Звезды' },
-  { id: 'food', numeric: true, disablePadding: false, label: 'Питание' },
+  { id: 'name', numeric: false, disablePadding: true, label: 'Имя' },
+  { id: 'surname', numeric: false, disablePadding: true, label: 'Фамилия' },
+  { id: 'email', numeric: true, disablePadding: false, label: 'Email' },
+  { id: 'phone', numeric: true, disablePadding: false, label: 'Телефон' },
+  { id: 'date', numeric: true, disablePadding: false, label: 'Дата' },
   { id: 'days', numeric: true, disablePadding: false, label: 'Дней' },
-  { id: 'location', numeric: true, disablePadding: false, label: 'Расположение' },
-  { id: 'people', numeric: true, disablePadding: false, label: 'Взрослых' },
-  { id: 'kids', numeric: true, disablePadding: false, label: 'Детей' },
-  { id: 'description', numeric: true, disablePadding: false, label: 'Описание' },
-  { id: 'edit', numeric: false, disablePadding: false, label: 'Изменение' },
-  { id: 'delete', numeric: false, disablePadding: false, label: 'Удаление' }
+  { id: 'tour', numeric: true, disablePadding: false, label: 'Тур' },
+  { id: 'comment', numeric: true, disablePadding: false, label: 'Комментарий' },
+  { id: 'delete', numeric: true, disablePadding: false, label: 'Удаление' }
 ];
 
 
@@ -121,19 +113,19 @@ const toolbarStyles = theme => ({
   }
 });
 
-let EnhancedTableToolbar = props => {
-  const { classes } = props;
+class EnhancedTableToolbar extends React.Component {
+  render() {
+  const { classes } = this.props;
 
   return (
     <Toolbar>
       <div className={classes.title}>
         <Typography variant="h5" id="tableTitle">
-          Туры
+          Клієнти
         </Typography>
-        <HotelCreate />
       </div>
     </Toolbar>
-  );
+  )}
 };
 
 EnhancedTableToolbar.propTypes = {
@@ -156,13 +148,14 @@ const styles = theme => ({
   },
 });
 
-class HolelsList extends React.Component {
+class ClientsList extends React.Component {
   state = {
     order: 'asc',
     orderBy: 'name',
     selected: [],
+    data: [],
     page: 0,
-    rowsPerPage: 10,
+    rowsPerPage: 5,
   };
 
   handleRequestSort = (event, property) => {
@@ -186,18 +179,20 @@ class HolelsList extends React.Component {
 
   deleteItem = e => {
     var id = e.target.parentElement.parentElement.parentElement.id;
-    this.props.deleteItem(id);
+    fetch('/api/client/' + id , {
+      method: 'DELETE',
+    }).then(res => res.json).then(suc => { console.log(suc); store.dispatch(getClient()) })
   }
 
   render() {
     const { classes } = this.props;
-    const data = this.props.item.items;
+    const data = this.props.item.client;
     const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
-        <EnhancedTableToolbar numSelected={selected.length}/>
+        <EnhancedTableToolbar numSelected={selected.length} />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
@@ -217,19 +212,13 @@ class HolelsList extends React.Component {
                       id={n._id}
                     >
                       <TableCell component="th" scope="row" padding="none">{n.name}</TableCell>
-                      <TableCell align="right"> <Avatar alt="Remy Sharp" src={".." + n.filePath} /></TableCell>
-                      <TableCell align="right">{n.type}</TableCell>
-                      <TableCell align="right">{n.country}</TableCell>
-                      <TableCell align="right">{n.hotel}</TableCell>
-                      <TableCell align="right">{n.price}</TableCell>
-                      <TableCell align="right">{n.stars}</TableCell>
-                      <TableCell align="right">{n.food}</TableCell>
-                      <TableCell align="right">{n.days}</TableCell>
-                      <TableCell align="right">{n.location}</TableCell>
-                      <TableCell align="right">{n.people}</TableCell>
-                      <TableCell align="right">{n.kids}</TableCell>
-                      <TableCell align="right">{n.description}</TableCell>
-                      <TableCell align="right"><HotelCreate edit={true} tour={n} /></TableCell>
+                      <TableCell align="left">{ n.surname }</TableCell>
+                      <TableCell align="left">{ n.email }</TableCell>
+                      <TableCell align="left">{ n.phone }</TableCell>
+                      <TableCell align="left">{ n.date }</TableCell>
+                      <TableCell align="left">{ n.days }</TableCell>
+                      <TableCell align="left">{ n.tour }</TableCell>
+                      <TableCell align="left">{ n.comment }</TableCell>
                       <TableCell align="right"><Button color="secondary" onClick={this.deleteItem}>Удалить</Button></TableCell>
                     </TableRow>
                   );
@@ -262,10 +251,10 @@ class HolelsList extends React.Component {
   }
 }
 
-HolelsList.propTypes = {
+ClientsList.propTypes = {
   classes: PropTypes.object.isRequired,
-  getItems: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired,
+  getClient: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool
 };
 
@@ -276,5 +265,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { deleteItem, getItems }
-)(withStyles(styles)(HolelsList));
+  { getClient }
+)(withStyles(styles)(ClientsList));

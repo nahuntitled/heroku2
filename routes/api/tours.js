@@ -26,8 +26,9 @@ router.post('/sort', (req, res) => {
   const findRule = {
     country: {$exists: true},
     type: {$exists: true},
+    days: 0,
     people: 1,
-    kids: 1
+    kids: 0
   };
 
   for(n in req.body) {
@@ -36,7 +37,7 @@ router.post('/sort', (req, res) => {
     }
   }
 
-  Tour.find({ country: findRule.country, type: findRule.type, kids: { $gte: findRule.kids }, people: { $gte: findRule.people } })
+  Tour.find({ country: findRule.country, type: findRule.type, kids: { $gte: findRule.kids }, days: { $gte: findRule.days }, people: { $gte: findRule.people } })
   .then(items => {
     res.json(items)
   })
@@ -57,7 +58,10 @@ router.post('/', auth, (req, res) => {
     description: req.body.description,
     country: req.body.country,
     type: req.body.type,
-    filePath: req.body.filePath
+    filePath: req.body.filePath,
+    days: req.body.days,
+    location: req.body.location,
+    hotel: req.body.hotel,
   });
 
   newItem.save().then(item => res.json(item));
@@ -78,7 +82,10 @@ router.put('/:id', auth, (req, res) => {
     description: req.body.description,
     country: req.body.country,
     type: req.body.type,
-    filePath: req.body.filePath
+    filePath: req.body.filePath,
+    days: req.body.days,
+    location: req.body.location,
+    hotel: req.body.hotel,
   }).then(item => res.json(item));
 });
 

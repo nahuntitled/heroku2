@@ -6,13 +6,15 @@ import {
   EDIT_ITEM,
   GET_COUNTRYS,
   ADD_COUNTRY,
-  GET_CONFIG
+  GET_CONFIG,
+  GET_CLIENT
 } from '../js/actions/types';
 
 const initialState = {
   items: [],
   countrys: [],
   config: [],
+  client: [],
   loading: false
 };
 
@@ -22,6 +24,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         config: action.payload,
+        loading: false
+      };
+    case GET_CLIENT:
+      return {
+        ...state,
+        client: action.payload,
         loading: false
       };
     case GET_ITEMS:

@@ -1,5 +1,6 @@
 import React from 'react'
 import Star from '@material-ui/icons/Star';
+import CallbackForm from '../../common/CallbackForm'
 
 class TourPage extends React.Component {
   state = {
@@ -11,8 +12,15 @@ class TourPage extends React.Component {
     fetch('/api/tours/' + this.props.match.params.id).then(res => res.json()).then(item => this.setState({ item, isLoad: true }))
   }
 
+  createStars = () => {
+    var row = [];
+    for(let i = 0; i < this.state.item.stars; i++) {
+      row.push(<Star key={i} />)
+    }
+    return row
+  }
+
   render() {
-    console.log(this.props.match.params);
     const item = this.state.item
     if(this.state.isLoad) {
       return(
@@ -25,11 +33,13 @@ class TourPage extends React.Component {
               <div className="row">
                 <div className="col-md-12 flex">
                   <div>
-                    <p className="header_tit">2 Place de la Sans Défense, Puteaux, Paris, France.</p>
+                    <p className="header_tit">{ item.location }</p>
                     <h2 className="tourpage__header">
-                      PARIS INTERNATIONAL HOTEL
+                      { item.hotel }
                     </h2>
-                    <div className="rating"><Star /><Star /><Star /><Star /><Star /></div>
+                  <div className="rating">
+                    { this.createStars() }
+                  </div>
                   </div>
                   <div>
                     <p className="tourpage__price">
@@ -46,10 +56,10 @@ class TourPage extends React.Component {
               <div className="col-md-4">
                 <div className="tourpage__details">
                   <h4 className="tourpage__search">Деталі</h4>
-                  <p className="tourpage__p">Готель:<span className="white">Арбат топ мод</span></p>
+                  <p className="tourpage__p">Готель:<span className="white">{ item.hotel }</span></p>
                   <p className="tourpage__p">Цена:<span className="white">{ item.price }</span></p>
                   <p className="tourpage__p">Зірок:<span className="white">{ item.stars }</span></p>
-                  <p className="tourpage__p">Днів:<span className="white">10</span></p>
+                  <p className="tourpage__p">Днів:<span className="white">{ item.days }</span></p>
                   <p className="tourpage__p">Дорослих:<span className="white">{ item.people }</span></p>
                   <p className="tourpage__p">Дітей:<span className="white">{ item.kids }</span></p>
                   <p className="tourpage__p">Тип туру:<span className="white">{ item.type }</span></p>
@@ -58,6 +68,9 @@ class TourPage extends React.Component {
                   <p className="tourpage__p">Про тур:<span className="white">{ item.description}</span></p>
                 </div>
               </div>
+            </div>
+            <div className="row">
+              <CallbackForm fromTour={true} item={item} />
             </div>
           </div>
         </div>

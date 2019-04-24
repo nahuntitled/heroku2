@@ -212,7 +212,7 @@ class CountrysList extends React.Component {
                     >
                       <TableCell component="th" scope="row" padding="none">{n.name}</TableCell>
                       <TableCell align="left"> <Avatar alt="Remy Sharp" src={".." + n.imgPath} /></TableCell>
-                      <TableCell align="right">{n.description}</TableCell>
+                      <TableCell align="left">{n.description}</TableCell>
                       <TableCell align="right"><HotelCreate edit={true} tour={n} updateData={this.updateData} /></TableCell>
                       <TableCell align="right"><Button color="secondary" onClick={this.deleteItem}>Удалить</Button></TableCell>
                     </TableRow>

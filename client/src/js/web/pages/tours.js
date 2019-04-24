@@ -15,7 +15,7 @@ class Tours extends React.Component {
     country: '',
     type: '',
     date: '',
-    days: 10,
+    days: 0,
     people: '',
     kids: '',
     item: null,
@@ -37,10 +37,12 @@ class Tours extends React.Component {
     var type = url.searchParams.get("type");
     var people = url.searchParams.get("people");
     var kids = url.searchParams.get("kids");
+    var days = url.searchParams.get("days");
 
     const sort = {
       country: country || this.state.country,
       type: type || this.state.type,
+      days: days || this.state.days,
       people: people || this.state.people,
       kids: kids || this.state.kids
     };
@@ -67,6 +69,7 @@ class Tours extends React.Component {
     const sort = {
       country: this.state.country,
       type: this.state.type,
+      days: this.state.days,
       people: this.state.people,
       kids: this.state.kids
     };
@@ -78,7 +81,11 @@ class Tours extends React.Component {
       },
       method: "POST",
       body: JSON.stringify(sort)
-    }).then(res => res.json()).then(item => this.setState({ item, isLoad: true }))
+    }).then(res => res.json()).then(item => { this.setState({ item }); setTimeout(() => {
+      this.setState({
+        isLoad: true
+      })
+    }, 500); console.log(item)})
   }
 
   render() {
@@ -114,10 +121,6 @@ class Tours extends React.Component {
                   </Input>
                 </FormGroup>
                 <FormGroup>
-                  <Label for="date">Дата заезда</Label>
-                  <Input type="date" name="date" id="date" onChange={this.onChange} />
-                </FormGroup>
-                <FormGroup>
                   <Label for="date">Дней</Label>
                   <Input type="text" name="days" id="days" placeholder="Кількість днів" onChange={this.onChange} />
                 </FormGroup>
@@ -133,7 +136,8 @@ class Tours extends React.Component {
                 </FormGroup>
                 <FormGroup>
                   <Label for="kids">Дітей</Label>
-                  <Input type="select" name="kids" id="kids" defaultValue="1" onChange={this.onChange}>
+                  <Input type="select" name="kids" id="kids" defaultValue="0" onChange={this.onChange}>
+                    <option>0</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>

@@ -256,6 +256,10 @@ section {
 	text-decoration: none;
 }
 
+.grid__button:focus {
+	outline: none;
+}
+
 .slider {
 	position: relative;
 }
@@ -263,16 +267,9 @@ section {
 .pad15 > p {
   color: white;
   font-size: 30px;
-  margin-top: 50px;
+	margin-top: 50px;
+	margin-bottom: 40px;
   font-weight: bold;
-}
-
-.pad15 > button {
-  background: #ff6600;
-  border: 4px solid white;
-  color: white;
-  padding: 5px 10px;
-  text-transform: uppercase;
 }
 
 .types {
@@ -473,8 +470,9 @@ footer {
 .tour__item {
 	margin: 30px 0 20px 20px;
 	background: white;
-	min-height: 200px;
+	height: 200px;
 	padding: 0;
+	overflow: hidden;
 }
 
 .tour__info {
@@ -555,7 +553,7 @@ footer {
 	background-repeat: no-repeat;
 	text-align: center;
 	height: 230px;
-	padding-top: 100px;
+	padding-top: 95px;
 	font-size: 38px;
 	line-height: 40px;
 	letter-spacing: 7.5px;
@@ -613,10 +611,16 @@ footer {
 .tourpage__header {
 	letter-spacing: 2.5px;
 	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.tourpage__top {
+	margin-bottom: 40px;
 }
 
 .tourpage__top img {
 	border-radius: 4px;
+	max-height: 450px;
 }
 
 .tourpage__price {
@@ -638,4 +642,47 @@ footer {
 .tourpage__price strong {
 	font-size: 28px;
 	margin: 0px 5px;
+}
+
+.form__thanks {
+	font-size: 20px;
+	color: white;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 40px;
+	background: #ff6600;
+	padding: 0;
+	width: 460px;
+}
+
+.form__add {
+	max-width: 1000px;
+	padding: 0 !important;
+	margin: 0 auto;
+	margin-top: -40px;
+	background-size: cover;
+	border-radius: 6px;
+	overflow: hidden;
+	min-height: 100px;
+}
+
+.form__add label {
+	color: white;
+}
+
+.darken4 {
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  padding: 50px 30px 30px;
+}
+
+#error {
+	color: red;
+	font-size: 13px;
+	margin-bottom: 0;
+}
+
+.formcall {
+	background: rgb(253,196,115);
 }

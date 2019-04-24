@@ -7,13 +7,14 @@ import { connect } from 'react-redux';
 import BestCard from '../../common/cards/BestCard'
 import TypeSlider from '../../common/sliders/TypeSlider'
 import CountrySlider from '../../common/sliders/CountrySlider'
+import CallbackForm from '../../common/CallbackForm'
 
 class Home extends Component {
   state = {
     country: '',
     type: '',
     date: '',
-    days: 10,
+    days: '',
     people: '',
     kids: '',
   }
@@ -64,10 +65,6 @@ class Home extends Component {
                   </select>
                 </div>
                 <div>
-                  <p className="input__desc">Дата заезда</p>
-                  <input type="date" className="header__input" placeholder="mm/dd/yy" id="date" name="date" onChange={this.onChange}/>
-                </div>
-                <div>
                   <p className="input__desc">Кількість днів</p>
                   <input type="text" className="header__input" placeholder="Кількість днів" id="days" name="days" onChange={this.onChange}/>
                 </div>
@@ -84,6 +81,7 @@ class Home extends Component {
                 <div>
                   <p className="input__desc">Дітей</p>
                   <select className="header__input" id="kids" name="kids" onChange={this.onChange}>
+                    <option>0</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -103,7 +101,7 @@ class Home extends Component {
             <h2 className="title">Найкращі пропозиції</h2>
             <p className="subtitle">Популярні напрямки які користуются пропозицією.</p>
             <div className="grid">
-              { item ? item.items.map((item,i) => {
+              { item ? item.items.slice(0, 6).map((item,i) => {
                 return <BestCard item={item} key={i} />
               }) : null }
             </div>
@@ -121,6 +119,13 @@ class Home extends Component {
             <h2 className="title">Країни</h2>
             <p className="subtitle">Не знаєте що хочете, но знаєте де? Просто виберіть країну і дізнайтесь.</p>
             <CountrySlider countrys={item.countrys} />
+          </div>
+        </section>
+        <section className="formcall">
+          <div className="container">
+            <h2 className="title">Зв'яжітся з нами</h2>
+            <p className="subtitle">Не можете визначитися? Залиште дані для зв'язку і ми Вам допоможем.</p>
+            <CallbackForm />
           </div>
         </section>
       </div>

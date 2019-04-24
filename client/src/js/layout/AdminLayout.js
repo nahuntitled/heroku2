@@ -64,7 +64,7 @@ class AdminLayout extends React.Component {
       >
         <div className={classes.toolbar}/>
         <List>
-        <Link to="/admin" className="links">
+          <Link to="/admin" className="links">
             <ListItem button>
               <ListItemIcon><InboxIcon/></ListItemIcon>
               <ListItemText>Настройки</ListItemText>
@@ -80,6 +80,12 @@ class AdminLayout extends React.Component {
             <ListItem button>
               <ListItemIcon><InboxIcon/></ListItemIcon>
               <ListItemText>Страны</ListItemText>
+            </ListItem>
+          </Link>
+          <Link to="/admin/clients" className="links">
+            <ListItem button>
+              <ListItemIcon><InboxIcon/></ListItemIcon>
+              <ListItemText>Клієнти</ListItemText>
             </ListItem>
           </Link>
          </List>

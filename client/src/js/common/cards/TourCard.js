@@ -10,7 +10,7 @@ function TourCard(props) {
       </div>
       <div className="col-md-8 col-sm-12 flex tour__info">
         <div>
-          <p className="tour__date"><strong>21.02 / 10</strong> дней</p>
+          <p className="tour__date"><strong>{ item.days }</strong> днів</p>
           <p className="tour__name">{ item.name }</p>
           <div className="rating"><Star /><Star /><Star /><Star /><Star /></div>
           <p className="tour__deck">{ item.description.substr(0, 120) + "..." }</p>

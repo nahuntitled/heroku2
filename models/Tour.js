@@ -28,8 +28,9 @@ const TourSchema = new Schema({
   },
   kids: {
     type: Number,
-    min: 1,
-    required: true
+    min: 0,
+    default: 0,
+    required: false
   },
   description: {
     type: String,
@@ -44,6 +45,18 @@ const TourSchema = new Schema({
     required: true
   },
   filePath: {
+    type: String,
+    required: true
+  },
+  days: {
+    type: Number,
+    required: true
+  },
+  hotel: {
+    type: String,
+    required: true
+  },
+  location: {
     type: String,
     required: true
   }

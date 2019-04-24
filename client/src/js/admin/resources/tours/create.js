@@ -17,14 +17,19 @@ class HotelCreate extends React.Component {
   state = {
     modal: false,
     name: '',
+    filePath: '',
     price: '',
     stars: '',
+    days: '',
+    location: '',
+    hotel: '',
     food: 'Все включено',
     people: '',
     kids: '',
     description: '',
     country: 'Египет',
-    type: 'Отдых на море'
+    type: 'Отдых на море',
+    fileEnabled: false
   };
 
   toggle = () => {
@@ -37,6 +42,10 @@ class HotelCreate extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  onChangeFile = e => {
+    this.setState({ [e.target.name]: e.target.value, fileEnabled: true });
+  }
+
   onSubmit = e => {
     e.preventDefault();
     
@@ -47,31 +56,44 @@ class HotelCreate extends React.Component {
       name: this.state.name,
       price: this.state.price,
       stars: this.state.stars,
+      days: this.state.days,
+      location: this.state.location,
+      hotel: this.state.hotel,
       food: this.state.food,
       people: this.state.people,
       kids: this.state.kids,
       description: this.state.description,
       country: this.state.country,
       type: this.state.type,
-      filePath: ""
+      filePath: this.state.filePath
     };
 
-    fetch('/api/upload', {
-      method: 'POST',
-      mode: 'cors',
-      body: pic
-    }).then(res => res.json()).then(i => {
-      newItem.filePath = i;
-
-      // Add or Edit item action
-      this.props.edit ?
-      this.props.editItem(this.props.tour._id, newItem):
-      this.props.addItem(newItem)
-    });
+    if(this.props.edit && this.state.fileEnabled) {
+      fetch('/api/upload', {
+        method: 'POST',
+        mode: 'cors',
+        body: pic
+      }).then(res => res.json()).then(i => {
+        newItem.filePath = i;
+        this.props.editItem(this.props.tour._id, newItem)
+      });
+      this.props.editItem(this.props.tour._id, newItem)
+    } else if(this.props.edit) {
+      this.props.editItem(this.props.tour._id, newItem)
+    } else {
+      fetch('/api/upload', {
+        method: 'POST',
+        mode: 'cors',
+        body: pic
+      }).then(res => res.json()).then(i => {
+        newItem.filePath = i;
+        this.props.addItem(newItem)
+      });
+    }
 
     setTimeout(() => {
       store.dispatch(getItems());
-    }, 200);
+    }, 300);
 
     // Close modal
     this.toggle();
@@ -88,11 +110,19 @@ class HotelCreate extends React.Component {
       document.getElementById('description').value = this.props.tour.description;
       document.getElementById('country').value = this.props.tour.country;
       document.getElementById('type').value = this.props.tour.type;
+      document.getElementById('days').value = this.props.tour.days;
+      document.getElementById('location').value = this.props.tour.location;
+      document.getElementById('hotel').value = this.props.tour.hotel;
+
 
       this.setState({
         name: this.props.tour.name,
+        filePath: this.props.tour.filePath,
         price: this.props.tour.price,
         stars: this.props.tour.stars,
+        days: this.props.tour.days,
+        location: this.props.tour.location,
+        hotel: this.props.tour.hotel,
         food: this.props.tour.food,
         people: this.props.tour.people,
         kids: this.props.tour.kids,
@@ -134,6 +164,36 @@ class HotelCreate extends React.Component {
               id='file'
               className='mb-3'
               accept="image/*"
+              onChange={this.onChangeFile}
+            />
+             <FormGroup>
+              <Label for="type">Тип туру</Label>
+              <Input type="select" name="type" id="type" onChange={this.onChange} defaultValue="Отдых на море">
+                <option value="Отдых на море">Отдых на море</option>
+                <option value="Выходные туры" >Выходные туры</option>
+                <option value="Лечебные туры" >Лечебные туры</option>
+                <option value="Экскурсии" >Экскурсии</option>
+                <option value="Активный отдых" >Активный отдых</option>
+                <option value="Круизы" >Круизы</option>
+                <option value="Сафари" >Сафари</option>
+                <option value="Горные курорты" >Горные курорты</option>
+              </Input>
+            </FormGroup>
+            <FormGroup>
+              <Label for="country">Країна</Label>
+              <Input type="select" name="country" id="country" onChange={this.onChange} defaultValue="Египет">
+                {this.props.item.countrys ? this.props.item.countrys.map(co => {
+                  return <option value={ co.name } key={ co._id } >{ co.name }</option>
+                }) : null}
+              </Input>
+            </FormGroup>
+            <Label for='email'>Готель</Label>
+            <Input
+              type='text'
+              name='hotel'
+              id='hotel'
+              placeholder='hotel'
+              className='mb-3'
               onChange={this.onChange}
             />
             <Label for='email'>Ціна</Label>
@@ -163,6 +223,24 @@ class HotelCreate extends React.Component {
                 <option value="Не включено" >Не включено</option>
               </Input>
             </FormGroup>
+            <Label for='email'>Днів</Label>
+            <Input
+              type='text'
+              name='days'
+              id='days'
+              placeholder='days'
+              className='mb-3'
+              onChange={this.onChange}
+            />
+            <Label for='email'>Розміщення</Label>
+            <Input
+              type='text'
+              name='location'
+              id='location'
+              placeholder='location'
+              className='mb-3'
+              onChange={this.onChange}
+            />
             <Label for='email'>Дорослих</Label>
             <Input
               type='text'
@@ -190,27 +268,6 @@ class HotelCreate extends React.Component {
               className='mb-3'
               onChange={this.onChange}
             />
-            <FormGroup>
-              <Label for="type">Select</Label>
-              <Input type="select" name="type" id="type" onChange={this.onChange} defaultValue="Отдых на море">
-                <option value="Отдых на море">Отдых на море</option>
-                <option value="Выходные туры" >Выходные туры</option>
-                <option value="Лечебные туры" >Лечебные туры</option>
-                <option value="Экскурсии" >Экскурсии</option>
-                <option value="Активный отдых" >Активный отдых</option>
-                <option value="Круизы" >Круизы</option>
-                <option value="Сафари" >Сафари</option>
-                <option value="Горные курорты" >Горные курорты</option>
-              </Input>
-            </FormGroup>
-            <FormGroup>
-              <Label for="country">Select</Label>
-              <Input type="select" name="country" id="country" onChange={this.onChange} defaultValue="Египет">
-                {this.props.item.countrys ? this.props.item.countrys.map(co => {
-                  return <option value={ co.name } key={ co._id } >{ co.name }</option>
-                }) : null}
-              </Input>
-            </FormGroup>
             <Button color='dark' style={{ marginTop: '2rem' }} block>
               Додати
             </Button>

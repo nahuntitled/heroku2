@@ -14,8 +14,15 @@ class TypeSlider extends React.Component {
   }
 
   Items() {
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
-      <TypesCard key={i} />
+    return [{name: 'Отдых на море', img: '../uploads/sea.jpg', path:'/tours?type=Отдых на море'},
+    {name: 'Выходные туры', img: '../uploads/vixodnoi.jpg', path:'/tours?type=Выходные туры'},
+    {name: 'Экскурсии', img: '../uploads/piramidi.jpg', path:'/tours?type=Экскурсии'},
+    {name: 'Лечебные туры', img: '../uploads/massage.jpg', path:'/tours?type=Лечебные туры'},
+    {name: 'Активный отдых', img: '../uploads/extream.jpg', path:'/tours?type=Активный отдых'},
+    {name: 'Круизы', img: '../uploads/cruis.jpg', path:'/tours?type=Круизы'},
+    {name: 'Сафари', img: '../uploads/safari.jpg', path:'/tours?type=Сафари'},
+    {name: 'Горные курорты', img: '../uploads/gori.jpg', path:'/tours?type=Горные курорты'}].map((item, i) => (
+      <TypesCard key={i} item={item} />
     ))
   }
 
