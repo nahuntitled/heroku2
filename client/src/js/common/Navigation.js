@@ -50,16 +50,16 @@ class Navigation extends Component {
             <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar>
               <NavItem>
-                <NavLink href="/">Главная</NavLink>
+                <NavLink href="/">Головна</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/tours">Туры</NavLink>
+                <NavLink href="/tours">Тури</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/about">О нас</NavLink>
+                <NavLink href="/about">Про нас</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/contact">Контакты</NavLink>
+                <NavLink href="/contact">Контакти</NavLink>
               </NavItem>
                 {isAuthenticated ? guestLinks : null}
               </Nav>

@@ -1,6 +1,7 @@
 import React from 'react'
 import Star from '@material-ui/icons/Star';
 import CallbackForm from '../../common/CallbackForm'
+import Feedback from '../../common/Feedback'
 
 class TourPage extends React.Component {
   state = {
@@ -70,7 +71,12 @@ class TourPage extends React.Component {
               </div>
             </div>
             <div className="row">
-              <CallbackForm fromTour={true} item={item} />
+            <div className="col-md-6 col-sm-12">
+             <CallbackForm fromTour={true} item={item} />
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <Feedback id={item._id} />
+            </div>
             </div>
           </div>
         </div>

@@ -74,7 +74,7 @@ class RegisterModal extends Component {
       email,
       password
     };
-
+    
     // Attempt to register
     this.props.register(newUser);
   };

@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb://localhost:27017/tourFirm",
+  "mongoURI": "mongodb+srv://awesome:000123321@cluster0-d3leu.mongodb.net/test?retryWrites=true",
   "jwtSecret": "sl_myJwtSecret"
 }

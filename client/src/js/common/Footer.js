@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Place from '@material-ui/icons/Place';
+import Email from '@material-ui/icons/Email';
+import Call from '@material-ui/icons/Call';
 
 class Footer extends Component {
 
@@ -22,19 +25,19 @@ class Footer extends Component {
             <div className="col-md-4">
               <ul className="footer__nav">
                 <li><a href="/">Главная</a></li>
-                <li><a href="/">Туры</a></li>
-                <li><a href="/">О нас</a></li>
-                <li><a href="/">Контакты</a></li>
+                <li><a href="/tours">Туры</a></li>
+                <li><a href="/about">О нас</a></li>
+                <li><a href="/contact">Контакты</a></li>
                 <li><a href="/">Цены</a></li>
               </ul>
             </div>
             <div className="col-md-4">
               <ul className="footer__nav">
                 <li><h6>Контакты</h6></li>
-                <li><i className="fa fa-globe"></i><a href="/">{item.config.contacts.email}</a></li>
-                <li><i className="fa fa-globe"></i><a href="/">{item.config.contacts.email}</a></li>
-                <li><i className="fa fa-phone"></i><a href="/">{item.config.contacts.phone}</a></li>
-                <li><i className="fa fa-map-marker"></i><a href="/">{item.config.contacts.location}</a></li>
+                <li><Email /><a href="/">{item.config.contacts.email}</a></li>
+                <li><Email /><a href="/">{item.config.contacts.email}</a></li>
+                <li><Call /><a href="/">{item.config.contacts.phone}</a></li>
+                <li><Place /><a href="/">{item.config.contacts.location}</a></li>
               </ul>
             </div>
           </div>

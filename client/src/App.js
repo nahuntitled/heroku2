@@ -6,6 +6,7 @@ import store from "./store"
 import { loadUser } from './js/actions/authActions';
 import { getConfig } from './js/actions/itemActions'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.css'
 import './App.css';
 
 store.dispatch(loadUser());

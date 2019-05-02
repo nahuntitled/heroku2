@@ -17,9 +17,9 @@ class CountryCard extends React.Component {
             <div className="rating"><Star /><Star /><Star /><Star /><Star /></div>
               <p>{ item.name }</p>
               <div className="country__info">
-              <h6><span>{ this.state.tours }</span>туров</h6>
-              <h6><span>{ this.state.sitys }</span>городов</h6>
-              <h6><span>{ this.state.hotels }</span>отелей</h6>
+              <h6><span>{ this.state.tours }</span>турів</h6>
+              <h6><span>{ this.state.sitys }</span>міст</h6>
+              <h6><span>{ this.state.hotels }</span>готелів</h6>
             </div>
             <div className="country__desc">
               {item.description.substr(0, 70) + "..."}

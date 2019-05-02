@@ -8,8 +8,7 @@ import Right from '@material-ui/icons/KeyboardArrowRight';
 class CountrySlider extends React.Component {
   responsive = {
     0: { items: 1 },
-    600: { items: 1 },
-    800: { items: 2 },
+    750: { items: 2 },
     1024: { items: 3 }
   }
 
