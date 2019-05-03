@@ -6,13 +6,6 @@ const cors = require('cors');
 
 const app = express();
 
-  // Set static folder
-  app.use(express.static('client/build'));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-
 // Bodyparser Middleware
 app.use(express.json());
 app.use(cors())
@@ -39,6 +32,13 @@ app.use('/api/admin', require('./routes/api/admin'));
 app.use('/api/home', require('./routes/api/home'));
 app.use('/api/client', require('./routes/api/client'));
 app.use('/api/comment', require('./routes/api/comment'));
+
+// Set static folder
+app.use(express.static('client/build'));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
 const port = process.env.PORT || 5000;
 
