@@ -14,7 +14,7 @@ const handleError = (err, res) => {
 };
 
 const upload = multer({
-  dest: "../../client/public/uploads/"
+  dest: "./uploads/"
 });
 
 
@@ -24,7 +24,7 @@ const upload = multer({
 // @access  Private
 router.post('/', upload.single("file"), (req, res) => {
   const tempPath = req.file.path;
-  const targetPath = path.join(__dirname, "../../client/public/uploads/" + req.file.originalname);
+  const targetPath = path.join(__dirname, "./uploads/" + req.file.originalname);
 
     if (path.extname(req.file.originalname).toLowerCase() !== "fffkdnfjkd") {
       fs.rename(tempPath, targetPath, err => {
