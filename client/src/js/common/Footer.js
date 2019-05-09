@@ -10,10 +10,10 @@ class Footer extends Component {
   render() {
     const item = this.props.item;
     return (
-      <footer className="footer mt-auto">
+      <footer className="footer">
         <div className="container">
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-4 pda_l">
               <img src={ ".." + item.config.logo } height="150" alt="" />
               <div className="footer__social">
                 <a href={item.config.socials.instagram}><i className="fab fa-instagram"></i></a>
@@ -22,22 +22,22 @@ class Footer extends Component {
                 <a href={item.config.socials.google}><i className="fab fa-google"></i></a>
               </div>
             </div>
-            <div className="col-md-4">
-              <ul className="footer__nav">
-                <li><a href="/">Главная</a></li>
-                <li><a href="/tours">Туры</a></li>
-                <li><a href="/about">О нас</a></li>
-                <li><a href="/contact">Контакты</a></li>
-                <li><a href="/">Цены</a></li>
-              </ul>
-            </div>
-            <div className="col-md-4">
+            <div className="col-md-5">
               <ul className="footer__nav">
                 <li><h6>Контакты</h6></li>
                 <li><Email /><a href="/">{item.config.contacts.email}</a></li>
                 <li><Email /><a href="/">{item.config.contacts.email}</a></li>
                 <li><Call /><a href="/">{item.config.contacts.phone}</a></li>
                 <li><Place /><a href="/">{item.config.contacts.location}</a></li>
+              </ul>
+            </div>
+            <div className="col-md-3">
+              <ul className="footer__nav">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/tours">Туры</a></li>
+                <li><a href="/about">О нас</a></li>
+                <li><a href="/contact">Контакты</a></li>
+                <li><a href="/">Цены</a></li>
               </ul>
             </div>
           </div>

@@ -51,10 +51,10 @@ class TourPage extends React.Component {
               </div>
             </div>
             <div className="row tourpage__top">
-              <div className="col-md-8">
+              <div className="col-md-7 col-lg-8">
                 <img src={`..${item.filePath}`} alt="ff " width="100%" height="100%" />
               </div>
-              <div className="col-md-4">
+              <div className="col-md-5 col-lg-4">
                 <div className="tourpage__details">
                   <h4 className="tourpage__search">Деталі</h4>
                   <p className="tourpage__p">Готель:<span className="white">{ item.hotel }</span></p>

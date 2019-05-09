@@ -1,6 +1,5 @@
 body {
 	position: relative;
-	padding-bottom: 300px;
 	min-height: 100vh;
 	height: 100%;
 }
@@ -50,12 +49,13 @@ button:focus {
 	padding: 300px 0;
 	color: white;
 	position: relative;
-	min-height: 700px;
+	min-height: 800px;
 }
 
 .header__head {
 	font-size: 60px;
-  font-weight: 700;
+	font-weight: 700;
+	padding: 0 100px;
   line-height: 70px;
   text-transform: uppercase;
   letter-spacing: 5px;
@@ -350,13 +350,6 @@ section {
 	font-weight: 700;
 	text-transform: uppercase;
 	line-height: 24px;
-	border-right: 1px solid white;
-	padding-right: 15px;
-}
-
-.country__info > h6:last-child {
-	padding-right: 0;
-	border-right: none;
 }
 
 .country__info > h6 > span {
@@ -364,8 +357,13 @@ section {
 	padding-right: 10px;
 }
 
+.white__strip {
+	height: 30px;width: 1px;background: #fff;
+}
+
 .country__desc {
 	padding-bottom: 25px;
+	min-height: 75px;
 	margin-top: 8px;
 	font-size: 14px;
 	line-height: 22px;
@@ -383,7 +381,7 @@ section {
 footer {
   padding: 30px 0;
 	background: #060c17;
-	position: absolute;
+	position: relative;
 	bottom: 0;
 	width: 100%;
 }
@@ -476,7 +474,7 @@ footer {
 }
 
 .tour__info {
-	padding: 27px 0 0 35px;
+	padding: 27px 0 20px 35px;
 }
 
 .tour__info .grid__button {

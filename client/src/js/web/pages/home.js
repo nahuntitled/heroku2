@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import {
-  Container
-} from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BestCard from '../../common/cards/BestCard'
@@ -34,11 +31,10 @@ class Home extends Component {
     return (
       <div>
         <div className="header" style={{ backgroundImage: `url('..${item.config.header_img}')` }}>
-          <Container>
             <h1 className="header__head">{item.config.header_title}</h1>
             <p className="header__subtitle">Так відпочивали Боги. Відпочинок, який ви запам'ятаєте надовго. Бронюйте Online.</p>
 		      	<a className="header__button" href="/tours" >Переглянути наші тури</a>
-            <div className="header__search">
+            <div className="header__search d-none d-sm-block">
             <form onSubmit={this.onSubmit}>
               <div className="search__header">
                 <div>
@@ -50,7 +46,7 @@ class Home extends Component {
                     }) : null}
                   </select>
                 </div>
-                <div>
+                <div className="d-sm-none d-md-block">
                   <p className="input__desc">Тип тура</p>
                   <select className="header__input" id="type" name="type" defaultValue="" onChange={this.onChange}>
                     <option value="">Любой</option>
@@ -94,7 +90,6 @@ class Home extends Component {
               </div>
               </form>
             </div>
-          </Container>
         </div>
         <section className="best__tours">
           <div className="container">

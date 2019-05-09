@@ -18,7 +18,9 @@ class CountryCard extends React.Component {
               <p>{ item.name }</p>
               <div className="country__info">
               <h6><span>{ this.state.tours }</span>турів</h6>
+              <div className="white__strip"></div>
               <h6><span>{ this.state.sitys }</span>міст</h6>
+              <div className="white__strip"></div>
               <h6><span>{ this.state.hotels }</span>готелів</h6>
             </div>
             <div className="country__desc">
