@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
+const mongoose = require('mongoose');
 
 // Item Model
 const Tour = require('../../models/Tour');
+const Place = require('../../models/Place');
 
 // @route   GET api/items
 // @desc    Get All Items
@@ -14,6 +16,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+  Tour.findOneAndUpdate(
+    {_id: req.params.id},
+    { $inc: { "view" : 1 } }
+ ).then(item => null)
   Tour.findById(req.params.id)
     .then(items => res.json(items));
 });
@@ -22,7 +28,6 @@ router.get('/:id', (req, res) => {
 // @route   POST api/items/sort
 // @desc    Sort tpurs
 router.post('/sort', (req, res) => {
-  console.log(req.body);
   const findRule = {
     country: {$exists: true},
     type: {$exists: true},
@@ -36,7 +41,10 @@ router.post('/sort', (req, res) => {
       findRule[n] = req.body[n]
     }
   }
-
+  Place.findOneAndUpdate(
+    {'name': findRule.country},
+    { $inc: { "view" : 1 } }
+ ).then(item => null)
   Tour.find({ country: findRule.country, type: findRule.type, kids: { $gte: findRule.kids }, days: { $gte: findRule.days }, people: { $gte: findRule.people } })
   .then(items => {
     res.json(items)

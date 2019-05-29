@@ -14,6 +14,10 @@ const CountrySchema = new Schema({
   description: {
     type: String,
     required: true
+  },
+  view: {
+    type: Number,
+    default: 0
   }
 });
 

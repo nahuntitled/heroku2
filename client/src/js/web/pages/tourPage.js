@@ -10,7 +10,7 @@ class TourPage extends React.Component {
   }
 
   componentWillMount() {
-    fetch('/api/tours/' + this.props.match.params.id).then(res => res.json()).then(item => this.setState({ item, isLoad: true }))
+    fetch('/api/tours/' + this.props.match.params.id).then(res => res.json()).then(item => {this.setState({ item, isLoad: true });console.log(item) })
   }
 
   createStars = () => {

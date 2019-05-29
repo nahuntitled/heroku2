@@ -1,7 +1,6 @@
 body {
 	position: relative;
-	min-height: 100vh;
-	height: 100%;
+	min-height: 90vh;
 }
 
 .flex {
@@ -384,6 +383,47 @@ footer {
 	position: relative;
 	bottom: 0;
 	width: 100%;
+}
+
+.contacts {
+	list-style: none;
+	margin-top: 60px;
+	margin-bottom: 60px;
+	padding-left: 0;
+}
+
+.contacts i {
+  color: #ff6600;
+  margin-right: 10px;
+}
+
+.contacts > li {
+	margin: 30px 0;
+}
+
+.contacts h6 {
+  font-size: 27px;
+  line-height: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contacts a {
+  text-decoration: none;
+  font-size: 16px;
+	letter-spacing: 1px;
+	color: #060c17;
+}
+
+.contacts svg {
+	color: #ff6600;
+	font-size: 22px;
+	margin-right: 5px;
+}
+
+.map {
+	margin-bottom: 80px;
 }
 
 .footer__nav {

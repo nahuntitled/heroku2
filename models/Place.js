@@ -14,6 +14,10 @@ const PlaceSchema = new Schema({
   imgPath: {
     type: String,
     required: true
+  },
+  view: {
+    type: Number,
+    default: 0
   }
 });
 

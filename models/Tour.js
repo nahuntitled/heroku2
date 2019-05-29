@@ -59,6 +59,9 @@ const TourSchema = new Schema({
   location: {
     type: String,
     required: true
+  },
+  view: {
+    type: Number
   }
 });
 

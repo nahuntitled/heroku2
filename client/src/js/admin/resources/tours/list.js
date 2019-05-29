@@ -59,6 +59,7 @@ const rows = [
   { id: 'people', numeric: true, disablePadding: false, label: 'Взрослых' },
   { id: 'kids', numeric: true, disablePadding: false, label: 'Детей' },
   { id: 'description', numeric: true, disablePadding: false, label: 'Описание' },
+  { id: 'view', numeric: false, disablePadding: false, label: 'Переглядів' },
   { id: 'edit', numeric: false, disablePadding: false, label: 'Изменение' },
   { id: 'delete', numeric: false, disablePadding: false, label: 'Удаление' }
 ];
@@ -229,6 +230,7 @@ class HolelsList extends React.Component {
                       <TableCell align="right">{n.people}</TableCell>
                       <TableCell align="right">{n.kids}</TableCell>
                       <TableCell align="right">{n.description}</TableCell>
+                      <TableCell align="right">{n.view}</TableCell>
                       <TableCell align="right"><HotelCreate edit={true} tour={n} /></TableCell>
                       <TableCell align="right"><Button color="secondary" onClick={this.deleteItem}>Удалить</Button></TableCell>
                     </TableRow>

@@ -2,6 +2,8 @@ import Home from './pages/home'
 import Tours from './pages/tours'
 import LoginModal from '../common/auth/LoginModal'
 import TourPage from './pages/tourPage'
+import Contact from './pages/contact'
+
 
 export default [
   {
@@ -27,5 +29,11 @@ export default [
     exact: false,
     admin: false,
     component: TourPage
+  },
+  {
+    path: "/contact",
+    exact: false,
+    admin: false,
+    component: Contact
   }
 ]

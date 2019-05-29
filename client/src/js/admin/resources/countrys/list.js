@@ -47,8 +47,9 @@ function getSorting(order, orderBy) {
 
 const rows = [
   { id: 'name', numeric: false, disablePadding: true, label: 'Название' },
-  { id: 'filePath', numeric: true, disablePadding: false, label: 'Фото' },
-  { id: 'description', numeric: true, disablePadding: false, label: 'Описание' },
+  { id: 'filePath', numeric: false, disablePadding: false, label: 'Фото' },
+  { id: 'description', numeric: false, disablePadding: false, label: 'Описание' },
+  { id: 'view', numeric: false, disablePadding: false, label: 'Пошуків' },
   { id: 'edit', numeric: true, disablePadding: false, label: 'Изменение' },
   { id: 'delete', numeric: true, disablePadding: false, label: 'Удаление' }
 ];
@@ -213,6 +214,7 @@ class CountrysList extends React.Component {
                       <TableCell component="th" scope="row" padding="none">{n.name}</TableCell>
                       <TableCell align="left"> <Avatar alt="Remy Sharp" src={".." + n.imgPath} /></TableCell>
                       <TableCell align="left">{n.description}</TableCell>
+                      <TableCell align="left">{n.view}</TableCell>
                       <TableCell align="right"><HotelCreate edit={true} tour={n} updateData={this.updateData} /></TableCell>
                       <TableCell align="right"><Button color="secondary" onClick={this.deleteItem}>Удалить</Button></TableCell>
                     </TableRow>
