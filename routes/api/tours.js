@@ -12,8 +12,16 @@ const Place = require('../../models/Place');
 // @access  Public
 router.get('/', (req, res) => {
   Tour.find()
+    .sort({view:-1})
     .then(items => res.json(items));
 });
+
+router.get('/stat', (req, res) => {
+  Tour.aggregate([
+    {$group : {_id:'$country', count:{$sum:'$view'}}}
+  ]).then(items => res.json(items));
+});
+
 
 router.get('/:id', (req, res) => {
   Tour.findOneAndUpdate(

@@ -88,6 +88,12 @@ class AdminLayout extends React.Component {
               <ListItemText>Клієнти</ListItemText>
             </ListItem>
           </Link>
+          <Link to="/admin/statistic" className="links">
+            <ListItem button>
+              <ListItemIcon><InboxIcon/></ListItemIcon>
+              <ListItemText>Статистика</ListItemText>
+            </ListItem>
+          </Link>
          </List>
       </Drawer>
       <main className={classes.content}>
