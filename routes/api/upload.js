@@ -24,7 +24,7 @@ const upload = multer({
 // @access  Private
 router.post('/', upload.single("file"), (req, res) => {
   const tempPath = req.file.path;
-  const targetPath = path.join(__dirname, "./uploads/" + req.file.originalname);
+  const targetPath = path.join(__dirname, "../../uploads/" + req.file.originalname);
 
     console.log(tempPath,targetPath);
     
