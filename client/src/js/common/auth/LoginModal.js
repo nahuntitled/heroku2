@@ -99,9 +99,7 @@ class LoginModal extends Component {
               onChange={this.onChange}
             />
             <Button color='dark' style={{ marginTop: '2rem' }} block>
-              <Link to="/admin">
                 Login
-              </Link>
             </Button>
           </FormGroup>
         </Form>
