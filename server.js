@@ -33,7 +33,7 @@ app.use('/api/client', require('./routes/api/client'));
 app.use('/api/comment', require('./routes/api/comment'));
 
 // Set static folder
-app.use(express.static('client/build'));
+// app.use(express.static('client/build'));
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
