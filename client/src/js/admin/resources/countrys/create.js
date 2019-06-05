@@ -46,7 +46,7 @@ class CountryCreate extends React.Component {
     const newItem = {
       name: this.state.name,
       description: this.state.description,
-      imgPath: this.state.imgPath || ''
+      imgPath: this.state.imgPath
     };
 
     if(this.props.edit && this.state.fileEnabled) {
@@ -56,7 +56,14 @@ class CountryCreate extends React.Component {
         body: pic
       }).then(res => res.json()).then(i => {
         newItem.imgPath = i;
-        this.props.addCountry(newItem)
+        fetch('/api/countrys/' + this.props.tour._id, {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method: "PUT",
+          body: JSON.stringify(newItem)
+        })
       });
     } else if(this.props.edit) {
       fetch('/api/countrys/' + this.props.tour._id, {
@@ -73,7 +80,7 @@ class CountryCreate extends React.Component {
         mode: 'cors',
         body: pic
       }).then(res => res.json()).then(i => {
-        newItem.filePath = i;
+        newItem.imgPath = i;
         this.props.addCountry(newItem)
       });
     }
