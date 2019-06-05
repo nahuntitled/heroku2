@@ -14,7 +14,7 @@ const handleError = (err, res) => {
 };
 
 const upload = multer({
-  dest: "../../client/build/uploads"
+  dest: "./client/build/uploads"
 });
 
 
