@@ -4,6 +4,8 @@ const path = require("path");
 var fs = require('fs');
 
 router.get('/', (req, res) => {
+  console.log(__dirname, './adminConfig.json');
+  
   fs.readFile(path.join(__dirname, './adminConfig.json'), 'utf8', (err, data) => {
     if (err){
         console.log(err);
