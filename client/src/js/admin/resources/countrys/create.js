@@ -81,7 +81,7 @@ class CountryCreate extends React.Component {
         body: pic
       }).then(res => res.json()).then(i => {
         newItem.imgPath = i;
-        this.props.addCountry(newItem)
+        this.props.addCountry(newItem);      
       });
     }
 
