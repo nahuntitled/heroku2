@@ -24,17 +24,17 @@ const upload = multer({
 // @access  Private
 router.post('/', upload.single("file"), (req, res) => {
   const tempPath = req.file.path;
-  const targetPath = path.join(__dirname, "../../uploads/" + req.file.originalname);
-  console.log(tempPath);
-  console.log(targetPath);
-  console.log(__dirname);
-  console.log(__dirname, "../uploads/");
-  console.log(__dirname, "./uploads/");
+  const targetPath = path.join(__dirname, "../../../uploads/" + req.file.originalname);
+  console.log(path.join(__dirname, "./uploads/"));
+  console.log(path.join(__dirname, "../../../uploads/"));
+  console.log(path.join(__dirname, "../../../uploads/logo.jpg"));
+  console.log(upload.dest);
+
     
     if (path.extname(req.file.originalname).toLowerCase() !== "fffkdnfjkd") {
       fs.rename(tempPath, targetPath, err => {
         if (err) return handleError(err, res);
-
+        
         res
           .status(200)
           .json("/uploads/" + req.file.originalname)
