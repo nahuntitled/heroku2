@@ -67,19 +67,19 @@ class AdminLayout extends React.Component {
           <Link to="/admin" className="links">
             <ListItem button>
               <ListItemIcon><InboxIcon/></ListItemIcon>
-              <ListItemText>Настройки</ListItemText>
+              <ListItemText>Налаштування</ListItemText>
             </ListItem>
           </Link>
           <Link to="/admin/tours" className="links">
             <ListItem button>
               <ListItemIcon><InboxIcon/></ListItemIcon>
-              <ListItemText>Туры</ListItemText>
+              <ListItemText>Тури</ListItemText>
             </ListItem>
           </Link>
           <Link to="/admin/countrys" className="links">
             <ListItem button>
               <ListItemIcon><InboxIcon/></ListItemIcon>
-              <ListItemText>Страны</ListItemText>
+              <ListItemText>Країни</ListItemText>
             </ListItem>
           </Link>
           <Link to="/admin/clients" className="links">

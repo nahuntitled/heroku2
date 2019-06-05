@@ -188,7 +188,7 @@ class Admin extends React.Component {
 				<br />
 				<TextField
           id="location"
-					label="Расположение"
+					label="Розміщення"
 					type="text"
 					name="location"
 					defaultValue="2"

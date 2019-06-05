@@ -142,7 +142,7 @@ class HotelCreate extends React.Component {
         size="small"
         onClick={this.toggle}
       >
-        { this.props.edit ? "Изменить" : "Добавить" }
+        { this.props.edit ? "Редагувати" : "Додати" }
       </Button>
     <Modal isOpen={this.state.modal} toggle={this.toggle} style={{zIndex:"100"}}>
         <ModalHeader toggle={this.toggle}>Додати новый тур</ModalHeader>
@@ -168,15 +168,15 @@ class HotelCreate extends React.Component {
             />
              <FormGroup>
               <Label for="type">Тип туру</Label>
-              <Input type="select" name="type" id="type" onChange={this.onChange} defaultValue="Отдых на море">
-                <option value="Отдых на море">Отдых на море</option>
-                <option value="Выходные туры" >Выходные туры</option>
-                <option value="Лечебные туры" >Лечебные туры</option>
-                <option value="Экскурсии" >Экскурсии</option>
-                <option value="Активный отдых" >Активный отдых</option>
-                <option value="Круизы" >Круизы</option>
-                <option value="Сафари" >Сафари</option>
-                <option value="Горные курорты" >Горные курорты</option>
+              <Input type="select" name="type" id="type" onChange={this.onChange} defaultValue="Відпочинок на морі">
+                <option value="Відпочинок на морі">Відпочинок на морі</option>
+                <option value="Вихідні тури" >Вихідні тури</option>
+                <option value="Лікувальні тури" >Лікувальні тури</option>
+                <option value="Екскурсії" >Екскурсії</option>
+                <option value="Активний відпочинок" >Активний відпочинок</option>
+                <option value="Круїзи" >Круїзи</option>
+                <option value="Сафарі" >Сафарі</option>
+                <option value="Гірські курорти" >Гірські курорти</option>
               </Input>
             </FormGroup>
             <FormGroup>

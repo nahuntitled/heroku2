@@ -30,7 +30,6 @@ class Tours extends React.Component {
     this.setState({
       item: this.props.item.items
     })
-    console.log(this.props.item.items);
 
     var url = new URL(window.location.href);
     var country = url.searchParams.get("country");
@@ -47,7 +46,6 @@ class Tours extends React.Component {
       kids: kids || this.state.kids
     };
 
-    console.log(sort);
     
 
     fetch('/api/tours/sort', {
@@ -100,7 +98,7 @@ class Tours extends React.Component {
                 <FormGroup>
                   <Label for="country">Країна</Label>
                   <Input type="select" name="country" id="country" defaultValue="" onChange={this.onChange} >
-                    <option value="">Любая</option>
+                    <option value="">Будь-яка</option>
                     {item.countrys ? item.countrys.map(co => {
                       return <option value={ co.name } key={ co._id } >{ co.name }</option>
                     }) : null}
@@ -109,15 +107,15 @@ class Tours extends React.Component {
                 <FormGroup>
                   <Label for="type">Тип тура</Label>
                   <Input type="select" name="type" id="type" defaultValue="" onChange={this.onChange} >
-                    <option value="">Любой</option>
-                    <option value="Отдых на море">Отдых на море</option>
-                    <option value="Выходные туры" >Выходные туры</option>
-                    <option value="Лечебные туры" >Лечебные туры</option>
-                    <option value="Экскурсии" >Экскурсии</option>
-                    <option value="Активный отдых" >Активный отдых</option>
-                    <option value="Круизы" >Круизы</option>
-                    <option value="Сафари" >Сафари</option>
-                    <option value="Горные курорты" >Горные курорты</option>
+                    <option value="">Будь-який</option>
+                    <option value="Відпочинок на морі">Відпочинок на морі</option>
+                    <option value="Вихідні тури" >Вихідні тури</option>
+                    <option value="Лікувальні тури" >Лікувальні тури</option>
+                    <option value="Екскурсії" >Екскурсії</option>
+                    <option value="Активний відпочинок" >Активний відпочинок</option>
+                    <option value="Круїзи" >Круїзи</option>
+                    <option value="Сафарі" >Сафарі</option>
+                    <option value="Гірські курорти" >Гірські курорти</option>
                   </Input>
                 </FormGroup>
                 <FormGroup>

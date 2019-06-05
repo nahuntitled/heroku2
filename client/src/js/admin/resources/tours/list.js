@@ -46,22 +46,22 @@ function getSorting(order, orderBy) {
 }
 
 const rows = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Название' },
+  { id: 'name', numeric: false, disablePadding: true, label: 'Назва' },
   { id: 'filePath', numeric: false, disablePadding: false, label: 'Фото' },
   { id: 'type', numeric: true, disablePadding: false, label: 'Тип' },
-  { id: 'country', numeric: true, disablePadding: false, label: 'Страна' },
-  { id: 'hotel', numeric: true, disablePadding: false, label: 'Отель' },
-  { id: 'price', numeric: true, disablePadding: false, label: 'Цена' },
-  { id: 'stars', numeric: true, disablePadding: false, label: 'Звезды' },
-  { id: 'food', numeric: true, disablePadding: false, label: 'Питание' },
-  { id: 'days', numeric: true, disablePadding: false, label: 'Дней' },
-  { id: 'location', numeric: true, disablePadding: false, label: 'Расположение' },
-  { id: 'people', numeric: true, disablePadding: false, label: 'Взрослых' },
-  { id: 'kids', numeric: true, disablePadding: false, label: 'Детей' },
-  { id: 'description', numeric: true, disablePadding: false, label: 'Описание' },
+  { id: 'country', numeric: true, disablePadding: false, label: 'Країна' },
+  { id: 'hotel', numeric: true, disablePadding: false, label: 'Готель' },
+  { id: 'price', numeric: true, disablePadding: false, label: 'Ціна' },
+  { id: 'stars', numeric: true, disablePadding: false, label: 'Зірок' },
+  { id: 'food', numeric: true, disablePadding: false, label: 'Харчування' },
+  { id: 'days', numeric: true, disablePadding: false, label: 'Днів' },
+  { id: 'location', numeric: true, disablePadding: false, label: 'Розміщення' },
+  { id: 'people', numeric: true, disablePadding: false, label: 'Дорослих' },
+  { id: 'kids', numeric: true, disablePadding: false, label: 'Дітей' },
+  { id: 'description', numeric: true, disablePadding: false, label: 'Деталі' },
   { id: 'view', numeric: false, disablePadding: false, label: 'Переглядів' },
-  { id: 'edit', numeric: false, disablePadding: false, label: 'Изменение' },
-  { id: 'delete', numeric: false, disablePadding: false, label: 'Удаление' }
+  { id: 'edit', numeric: false, disablePadding: false, label: 'Редагування' },
+  { id: 'delete', numeric: false, disablePadding: false, label: 'Видалення' }
 ];
 
 
@@ -129,7 +129,7 @@ let EnhancedTableToolbar = props => {
     <Toolbar>
       <div className={classes.title}>
         <Typography variant="h5" id="tableTitle">
-          Туры
+          Тури
         </Typography>
         <HotelCreate />
       </div>
@@ -232,7 +232,7 @@ class HolelsList extends React.Component {
                       <TableCell align="right">{n.description}</TableCell>
                       <TableCell align="right">{n.view}</TableCell>
                       <TableCell align="right"><HotelCreate edit={true} tour={n} /></TableCell>
-                      <TableCell align="right"><Button color="secondary" onClick={this.deleteItem}>Удалить</Button></TableCell>
+                      <TableCell align="right"><Button color="secondary" onClick={this.deleteItem}>Видалити</Button></TableCell>
                     </TableRow>
                   );
                 })}

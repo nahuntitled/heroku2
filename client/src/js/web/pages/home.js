@@ -40,24 +40,24 @@ class Home extends Component {
                 <div>
                   <p className="input__desc">Країна</p>
                   <select className="header__input" id="country" name="country" defaultValue="" onChange={this.onChange}>
-                    <option value="">Любая</option>
+                    <option value="">Будь-яка</option>
                     {item.countrys ? item.countrys.map(co => {
                       return <option value={ co.name } key={ co._id } >{ co.name }</option>
                     }) : null}
                   </select>
                 </div>
                 <div className="d-sm-none d-md-block">
-                  <p className="input__desc">Тип тура</p>
+                  <p className="input__desc">Тип туру</p>
                   <select className="header__input" id="type" name="type" defaultValue="" onChange={this.onChange}>
-                    <option value="">Любой</option>
-                    <option value="Отдых на море">Отдых на море</option>
-                    <option value="Выходные туры" >Выходные туры</option>
-                    <option value="Лечебные туры" >Лечебные туры</option>
-                    <option value="Экскурсии" >Экскурсии</option>
-                    <option value="Активный отдых" >Активный отдых</option>
-                    <option value="Круизы" >Круизы</option>
-                    <option value="Сафари" >Сафари</option>
-                    <option value="Горные курорты" >Горные курорты</option>
+                    <option value="">Будь-який</option>
+                    <option value="Відпочинок на морі">Відпочинок на морі</option>
+                    <option value="Вихідні тури" >Вихідні тури</option>
+                    <option value="Лікувальні тури" >Лікувальні тури</option>
+                    <option value="Екскурсії" >Екскурсії</option>
+                    <option value="Активний відпочинок" >Активний відпочинок</option>
+                    <option value="Круїзи" >Круїзи</option>
+                    <option value="Сафарі" >Сафарі</option>
+                    <option value="Гірські курорти" >Гірські курорти</option>
                   </select>
                 </div>
                 <div>
@@ -118,7 +118,7 @@ class Home extends Component {
         </section>
         <section className="formcall">
           <div className="container">
-            <h2 className="title">Зв'яжітся з нами</h2>
+            <h2 className="title">Зв'яжіться з нами</h2>
             <p className="subtitle">Не можете визначитися? Залиште дані для зв'язку і ми Вам допоможем.</p>
             <CallbackForm />
           </div>

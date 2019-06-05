@@ -33,11 +33,10 @@ class Footer extends Component {
             </div>
             <div className="col-md-3">
               <ul className="footer__nav">
-                <li><a href="/">Главная</a></li>
-                <li><a href="/tours">Туры</a></li>
-                <li><a href="/about">О нас</a></li>
-                <li><a href="/contact">Контакты</a></li>
-                <li><a href="/">Цены</a></li>
+                <li><a href="/">Головна</a></li>
+                <li><a href="/tours">Тури</a></li>
+                <li><a href="/about">Про нас</a></li>
+                <li><a href="/contact">Контакти</a></li>
               </ul>
             </div>
           </div>

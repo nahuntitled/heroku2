@@ -92,10 +92,10 @@ class CountryCreate extends React.Component {
         size="small"
         onClick={this.toggle}
       >
-        { this.props.edit ? "Изменить" : "Добавить" }
+        { this.props.edit ? "Редагувати" : "Додати" }
       </Button>
     <Modal isOpen={this.state.modal} toggle={this.toggle} style={{zIndex:"100"}}>
-        <ModalHeader toggle={this.toggle}>Добавить страну</ModalHeader>
+        <ModalHeader toggle={this.toggle}>Додати країну</ModalHeader>
           <ModalBody>
           <Form onSubmit={this.onSubmit} encType="multipart/form-data">
           <FormGroup>
@@ -116,7 +116,7 @@ class CountryCreate extends React.Component {
               accept="image/*"
               onChange={this.onChange}
             />
-            <Label for='email'>Опис</Label>
+            <Label for='email'>Деталі</Label>
             <Input
               type='text'
               name='description'

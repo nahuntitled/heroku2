@@ -44,15 +44,15 @@ function getSorting(order, orderBy) {
 }
 
 const rows = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Имя' },
-  { id: 'surname', numeric: false, disablePadding: true, label: 'Фамилия' },
+  { id: 'name', numeric: false, disablePadding: true, label: `Ім'я` },
+  { id: 'surname', numeric: false, disablePadding: true, label: 'Прізвище' },
   { id: 'email', numeric: true, disablePadding: false, label: 'Email' },
   { id: 'phone', numeric: true, disablePadding: false, label: 'Телефон' },
   { id: 'date', numeric: true, disablePadding: false, label: 'Дата' },
-  { id: 'days', numeric: true, disablePadding: false, label: 'Дней' },
+  { id: 'days', numeric: true, disablePadding: false, label: 'Дній' },
   { id: 'tour', numeric: true, disablePadding: false, label: 'Тур' },
-  { id: 'comment', numeric: true, disablePadding: false, label: 'Комментарий' },
-  { id: 'delete', numeric: true, disablePadding: false, label: 'Удаление' }
+  { id: 'comment', numeric: true, disablePadding: false, label: 'Коментар' },
+  { id: 'delete', numeric: true, disablePadding: false, label: 'Видалення' }
 ];
 
 
@@ -219,7 +219,7 @@ class ClientsList extends React.Component {
                       <TableCell align="left">{ n.days }</TableCell>
                       <TableCell align="left">{ n.tour }</TableCell>
                       <TableCell align="left">{ n.comment }</TableCell>
-                      <TableCell align="right"><Button color="secondary" onClick={this.deleteItem}>Удалить</Button></TableCell>
+                      <TableCell align="right"><Button color="secondary" onClick={this.deleteItem}>Видалити</Button></TableCell>
                     </TableRow>
                   );
                 })}

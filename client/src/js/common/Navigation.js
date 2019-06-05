@@ -11,6 +11,7 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Logout from './auth/Logout'
 
 class Navigation extends Component {
   state = {
@@ -31,8 +32,11 @@ class Navigation extends Component {
       <Fragment>
         <NavItem className="ml-auto">
           <NavLink href="/admin">
-            Админка
+            Адмінка
           </NavLink>
+        </NavItem>
+        <NavItem>
+          <Logout />
         </NavItem>
       </Fragment>
     );

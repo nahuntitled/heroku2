@@ -88,7 +88,7 @@ router.post('/', auth, (req, res) => {
 // @desc    Create An Item
 // @access  Private
 router.put('/:id', auth, (req, res) => {
-  Tour.findOneAndReplace({_id: req.params.id},  {
+  Tour.findOneAndUpdate({_id: req.params.id},  {
     name: req.body.name,
     price: req.body.price,
     stars: req.body.stars,
