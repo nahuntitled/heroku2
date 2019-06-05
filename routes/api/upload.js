@@ -25,6 +25,11 @@ const upload = multer({
 router.post('/', upload.single("file"), (req, res) => {
   const tempPath = req.file.path;
   const targetPath = path.join(__dirname, "../../uploads/" + req.file.originalname);
+  console.log(tempPath);
+  console.log(targetPath);
+  console.log(__dirname);
+  console.log(__dirname, "../uploads/");
+  console.log(__dirname, "./uploads/");
     
     if (path.extname(req.file.originalname).toLowerCase() !== "fffkdnfjkd") {
       fs.rename(tempPath, targetPath, err => {
