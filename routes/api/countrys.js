@@ -32,7 +32,7 @@ router.post('/', auth, (req, res) => {
 // @desc    Create An Item
 // @access  Private
 router.put('/:id', (req, res) => {
-  Place.findOneAndReplace({_id: req.params.id},  {
+  Place.findOneAndUpdate({_id: req.params.id},  {
     name: req.body.name,
     description: req.body.description,
     imgPath: req.body.imgPath

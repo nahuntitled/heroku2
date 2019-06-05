@@ -77,7 +77,6 @@ class HotelCreate extends React.Component {
         newItem.filePath = i;
         this.props.editItem(this.props.tour._id, newItem)
       });
-      this.props.editItem(this.props.tour._id, newItem)
     } else if(this.props.edit) {
       this.props.editItem(this.props.tour._id, newItem)
     } else {

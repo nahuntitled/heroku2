@@ -17,8 +17,10 @@ class CountryCreate extends React.Component {
   state = {
     modal: false,
     name: '',
+    imgPath: '',
     description: '',
-    times: 0
+    times: 0,
+    fileEnabled: false
   };
 
   toggle = () => {
@@ -26,6 +28,10 @@ class CountryCreate extends React.Component {
       modal: !this.state.modal
     });
   };
+
+  onChangeFile = e => {
+    this.setState({ [e.target.name]: e.target.value, fileEnabled: true });
+  }
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -40,18 +46,19 @@ class CountryCreate extends React.Component {
     const newItem = {
       name: this.state.name,
       description: this.state.description,
-      imgPath: ""
+      imgPath: this.state.imgPath || ''
     };
 
-    fetch('/api/upload', {
-      method: 'POST',
-      mode: 'cors',
-      body: pic
-    }).then(res => res.json()).then(i => {
-      newItem.imgPath = i;
-
-      // Add or Edit item action
-      this.props.edit ?
+    if(this.props.edit && this.state.fileEnabled) {
+      fetch('/api/upload', {
+        method: 'POST',
+        mode: 'cors',
+        body: pic
+      }).then(res => res.json()).then(i => {
+        newItem.imgPath = i;
+        this.props.addCountry(newItem)
+      });
+    } else if(this.props.edit) {
       fetch('/api/countrys/' + this.props.tour._id, {
         headers: {
           'Accept': 'application/json',
@@ -59,9 +66,17 @@ class CountryCreate extends React.Component {
         },
         method: "PUT",
         body: JSON.stringify(newItem)
-      }) :
-      this.props.addCountry(newItem)
-    });
+      })
+    } else {
+      fetch('/api/upload', {
+        method: 'POST',
+        mode: 'cors',
+        body: pic
+      }).then(res => res.json()).then(i => {
+        newItem.filePath = i;
+        this.props.addCountry(newItem)
+      });
+    }
 
     setTimeout(() => {
       store.dispatch(getCountrys());
@@ -78,6 +93,7 @@ class CountryCreate extends React.Component {
 
       this.setState({
         name: this.props.tour.name,
+        imgPath: this.props.tour.imgPath,
         description: this.props.tour.description
       })
     }
@@ -114,7 +130,7 @@ class CountryCreate extends React.Component {
               id='file'
               className='mb-3'
               accept="image/*"
-              onChange={this.onChange}
+              onChange={this.onChangeFile}
             />
             <Label for='email'>Деталі</Label>
             <Input
