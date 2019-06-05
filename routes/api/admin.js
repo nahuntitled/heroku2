@@ -4,9 +4,7 @@ const path = require("path");
 var fs = require('fs');
 
 router.get('/', (req, res) => {
-  console.log(__dirname, './adminConfig.json');
-  
-  fs.readFile(path.join(__dirname, '../../adminConfig.json'), 'utf8', (err, data) => {
+  fs.readFile(path.join(__dirname, '../../client/public/adminConfig.json'), 'utf8', (err, data) => {
     if (err){
         console.log(err);
     } else {
@@ -17,7 +15,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   json = JSON.stringify(req.body); //convert it back to json
-  fs.writeFile(path.join(__dirname, '../../adminConfig.json'), json, 'utf8', (err,data) => { res.status(200).json(data); });
+  fs.writeFile(path.join(__dirname, '../../client/public/adminConfig.json'), json, 'utf8', (err,data) => { res.status(200).json(data); });
 });
 
 module.exports = router;
